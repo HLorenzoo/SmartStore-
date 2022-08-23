@@ -20,11 +20,11 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  Provincia: {
+  provincia: {
     type: String,
     required: true,
   },
-  Direccion: {
+  direccion: {
     type: String,
     required: true,
   },
@@ -42,6 +42,10 @@ const UserSchema = new mongoose.Schema({
   isAdmin: {
     type: Boolean,
     default: false,
+  },
+  userStatus: {
+    type: Boolean,
+    default: true,
   },
 });
 

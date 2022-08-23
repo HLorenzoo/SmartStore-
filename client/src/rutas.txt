@@ -1,0 +1,11 @@
+Home => "/" es publico
+Carrito => "/cart" es privado
+User => "/profile" es privado
+Favoritos "/favorites" es privado
+Detalle producto "/producto/:id" es publico
+Login => "/login" es publico
+Register => "/register" es publico
+Categoria => "/categories/:name" es publico
+
+
+Mostrar/ocultar

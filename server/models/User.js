@@ -36,6 +36,10 @@ const UserSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
+  favoritos: {
+    type: Array,
+    default: [],
+  },
   salt: {
     type: String,
   },

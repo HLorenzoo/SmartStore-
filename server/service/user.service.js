@@ -24,7 +24,7 @@ class UserService {
       return await User.findByIdAndUpdate(
         id,
         {
-          $addToSet: {
+          $push: {
             ordenes: ordenes,
           },
         },
@@ -32,6 +32,32 @@ class UserService {
       );
     } catch (error) {
       console.error("error existente en addProduct- SERVICE", error.message);
+    }
+  }
+  static async deleteUser(id) {
+    try {
+      return await User.findByIdAndUpdate(
+        id,
+        { userStatus: false },
+        { new: true }
+      );
+    } catch (error) {
+      console.error("error existente en deleteUser- SERVICE", error.message);
+    }
+  }
+  static async addFav(id, favoritos) {
+    try {
+      return await User.findByIdAndUpdate(
+        id,
+        {
+          $addToSet: {
+            favoritos,
+          },
+        },
+        { new: true }
+      );
+    } catch (error) {
+      console.error("error existente en addFav- SERVICE", error.message);
     }
   }
 }

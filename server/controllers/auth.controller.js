@@ -1,4 +1,5 @@
 const UserService = require("../service/user.service");
+const jwt = require("jsonwebtoken");
 class AuthController {
   static async register(req, res, next) {
     try {
@@ -24,7 +25,7 @@ class AuthController {
         res.cookie("token", token, { maxAge: 999999 });
         res.status(201).send(req.user);
       }
-      user || res.sendStatus(404);
+      user || res.sendStatus(500);
     } catch (error) {
       console.log(error);
       next();

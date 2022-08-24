@@ -1,7 +1,14 @@
 import React from "react";
-import axios from "axios";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+
 function App() {
-  return <> </>;
+  return (
+    <div>
+      <Navbar />
+      <Sidebar />
+    </div>
+  );
 }
 
 export default App;

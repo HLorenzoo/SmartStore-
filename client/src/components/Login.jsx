@@ -2,7 +2,8 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Typography, Box } from "@mui/material";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -18,7 +19,6 @@ const Login = () => {
   return (
     <Box
       sx={{
-
         backgroundColor: "#212223",
         display: "flex",
         flexDirection: "column",
@@ -28,10 +28,9 @@ const Login = () => {
       }}
     >
       <Box
-        
         sx={{
           // background:"linear-gradient(220.55deg, #565656 0%, #181818 100%)",
-          backgroundColor:"#fcfcfc",
+          backgroundColor: "#fcfcfc",
           display: "flex",
           flexDirection: "column",
           borderRadius: 4,
@@ -50,8 +49,8 @@ const Login = () => {
           id="email"
           label="ingresa un mail"
           name="email"
-          onChange ={handlerInputs}
-          sx={{color:"white"}}
+          onChange={handlerInputs}
+          sx={{ color: "white" }}
         />
         <TextField
           variant="outlined"
@@ -59,16 +58,19 @@ const Login = () => {
           id="password"
           label="ingresa un password"
           name="password"
-          onChange ={handlerInputs}
+          onChange={handlerInputs}
         />
-        <Button variant="contained" color="primary">
-          Ingresar
-        </Button>
+        <Link to="/">
+          <Button variant="contained" color="primary">
+            Ingresar
+          </Button>
+        </Link>
         <Button variant="contained" color="secondary">
-          <ShoppingCartIcon color="primary">star</ShoppingCartIcon>Ir a mi carrito
+          <ShoppingCartIcon color="primary">star</ShoppingCartIcon>Ir a mi
+          carrito
         </Button>
         <Typography variant="body1" component="p">
-          ¿no tenes cuenta? registrate aqui
+          ¿No tenes cuenta? Registrate aquí
         </Typography>
       </Box>
     </Box>

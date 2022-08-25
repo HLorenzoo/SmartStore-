@@ -1,36 +1,45 @@
-import * as React from 'react';
-import { CardActions, Container, Typography, Box, Grid, CardMedia, CardContent, Card, Button} from '@mui/material';
-import { fakeData } from './fakelist'
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+import * as React from "react";
+import {
+  CardActions,
+  Container,
+  Typography,
+  Box,
+  Grid,
+  CardMedia,
+  CardContent,
+  Card,
+  Button,
+} from "@mui/material";
+import { fakeData } from "./fakelist";
 
 const ProductsGrill = () => {
   return (
     <>
-
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
+            bgcolor: "#F4F5F7",
             pb: 6,
           }}
-        >
-        </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
-
+        ></Box>
+        <Container sx={{ py: 8, ml: "350px" }} maxWidth="md">
           <Grid container spacing={4}>
             {fakeData.map((card) => (
               <Grid item key={card.name} xs={12} sm={6} md={4}>
                 <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column', }}
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
                 >
                   <CardMedia
                     component="img"
                     sx={{
-                      // 16:9
-                      pt: '56.25%',
+                      // height: "320px",
+                      // width: "320px",
+                      aspectRatio: "1/1",
+                      pt: "25px",
                     }}
                     image={card.image}
                     alt="foto de producto"
@@ -40,11 +49,23 @@ const ProductsGrill = () => {
                       {card.name}
                     </Typography>
                     <Typography>
-                      {card.description}
+                      {`${card.description.substring(0, 130)}...`}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button sx={{backgroundColor: "#212223",'&:hover':{backgroundColor: '#212223',opacity: [0.9, 0.8, 0.7],}}} variant="contained" size="small">Ver</Button>
+                    <Button
+                      sx={{
+                        backgroundColor: "#212223",
+                        "&:hover": {
+                          backgroundColor: "#212223",
+                          opacity: [0.9, 0.8, 0.7],
+                        },
+                      }}
+                      variant="contained"
+                      size="small"
+                    >
+                      Ver
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
@@ -52,9 +73,8 @@ const ProductsGrill = () => {
           </Grid>
         </Container>
       </main>
-
     </>
   );
-}
+};
 
 export default ProductsGrill;

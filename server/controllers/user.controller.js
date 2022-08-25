@@ -1,6 +1,7 @@
 const UserService = require("../service/user.service");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const User = require("../models/User");
 class UserController {
   static async getAllUser(req, res, next) {
     try {
@@ -75,6 +76,15 @@ class UserController {
       const userUpdated = await UserService.deleteAdmin(_id, req.body);
       console.log(userUpdated);
       userUpdated && res.status(202).send(userUpdated);
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  }
+  static async findOneUser(req, res, next) {
+    try {
+      const { _id } = req.params;
+      const user = await User.findById(_id);
+      user && res.status(202).send(user);
     } catch (error) {
       return res.status(500).json({ error });
     }

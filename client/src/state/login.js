@@ -11,11 +11,7 @@ export const logIn = createAsyncThunk("LOG_IN", async (user) => {
   return res.data;
 });
 export const sendMe = createAsyncThunk("ME_TOKENJWT", async () => {
-  const { data } = await axios.get("/api/auth/me");
-
-  const res = await axios.get(`/api/users/${data._id}`);
-
-  return res.data[0];
+  return (await axios.get("/api/auth/me")).data;
 });
 //reducer
 const loginReducer = createReducer([], {

@@ -75,7 +75,7 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar /* position="fixed" */>
       <StyledToolBar>
         <StyledTypography
           variant="h5"

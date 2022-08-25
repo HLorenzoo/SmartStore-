@@ -1,18 +1,42 @@
-import React from "react";
-import { Box, Stack } from "@mui/material";
-import axios from "axios";
-import ProductDetails from "./commons/ProductDetails";
+import React, { useEffect } from "react";
+import { Box, CssBaseline, Typography } from "@mui/material";
+import Sidebar from "./components/Sidebar";
+import Signup from "./components/Signup";
+import Navbar from "./components/Navbar";
+import { Route, Routes } from "react-router";
+import Login from "./components/Login";
+import Home from "./components/Home";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { sendMe } from "./state/login";
+
 
 function App() {
+  const dispatch = useDispatch();
+
+  const usuario = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(sendMe());
+  }, []);
+
   return (
     <>
-      <Box>
-        {/* <Stack direction="row" spacing={2} justifyContent="space-evenly"> */}
-          {/* <Navbar /> */}
-          {/* <Sidebar /> */}
-          {/* <Content /> */}
-          {/* <ProductDetails /> */}
-        {/* </Stack> */}
+
+      <CssBaseline />
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateRows: "auto 1fr auto",
+          minHeight: "100vh",
+        }}
+      >
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+
       </Box>
     </>
   );

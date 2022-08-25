@@ -10,6 +10,7 @@ import Home from "./components/Home";
 function App() {
   return (
     <Box>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/signup" element={<Signup />}></Route>

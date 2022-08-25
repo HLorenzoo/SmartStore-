@@ -15,15 +15,6 @@ function App() {
 
   const usuario = useSelector((state) => state.user);
   useEffect(() => {
-    /*     if (document.cookie) {
-      const token = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("token="))
-        .split("=")[1];
-
-      var user = jwt_decode(token);
-      user && dispatch(sendMe(user));
-    } */
     dispatch(sendMe());
   }, []);
 

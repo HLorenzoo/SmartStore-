@@ -111,7 +111,16 @@ const Signup = () => {
           type="text"
           onChange={handlerInputs}
         />
-        <Button variant="contained" color="primary" onClick={handleRegister}>
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: "#8d69d4",
+            "&:hover": {
+              backgroundColor: "#633fa4",
+            },
+          }}
+          onClick={handleRegister}
+        >
           Ingresar
         </Button>
         <Typography variant="body1" component="p">

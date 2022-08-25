@@ -13,10 +13,14 @@ export const logIn = createAsyncThunk("LOG_IN", async (user) => {
 export const sendMe = createAsyncThunk("ME_TOKENJWT", async () => {
   return (await axios.get("/api/auth/me")).data;
 });
+export const logOut = createAsyncThunk("LOG_OUT", async () => {
+  return (await axios.post("/api/auth/logout")).data;
+});
 //reducer
 const loginReducer = createReducer([], {
   [signUp.fulfilled]: (state, action) => action.payload,
   [logIn.fulfilled]: (state, action) => action.payload,
   [sendMe.fulfilled]: (state, action) => action.payload,
+  [logOut.fulfilled]: (state, action) => action.payload,
 });
 export default loginReducer;

@@ -9,7 +9,8 @@ import Home from "./components/Home";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { sendMe } from "./state/login";
-import jwt_decode from "jwt-decode";
+
+
 function App() {
   const dispatch = useDispatch();
 
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <>
+
       <CssBaseline />
       <Box
         sx={{
@@ -35,6 +37,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/user" element={<h1>{usuario.username}</h1>} />
         </Routes>
+
       </Box>
     </>
   );

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, CssBaseline, Avatar, styled } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 
@@ -16,64 +16,92 @@ const Login = () => {
     console.log(user);
   };
 
+  const StyledButton = styled(Button)(({ theme }) => ({
+    marginTop: "15px",
+    marginLeft: "70px",
+
+    backgroundColor: "#8d69d4",
+    "&:hover": {
+      backgroundColor: "#633fa4",
+    },
+  }));
+
+  const StyledTypography = styled(Typography)(({ theme }) => ({
+    marginTop: "15px",
+  }));
   return (
-    <Box
-      sx={{
-        backgroundColor: "#212223",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
+    <CssBaseline>
       <Box
         sx={{
-          // background:"linear-gradient(220.55deg, #565656 0%, #181818 100%)",
-          backgroundColor: "#fcfcfc",
+          paddingTop: "50px",
+          minHeight: "100vh",
+          backgroundColor: "#212223",
           display: "flex",
           flexDirection: "column",
-          borderRadius: 4,
-          m: 10,
-          p: 5,
-          boxShadow: "10px 10px 5px 0px rgba(255,255,255, 0.45)",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
         }}
       >
-        <Typography variant="body1" component="p">
-          ya tenes una cuenta? Ingresa
-        </Typography>
+        <Box
+          sx={{
+            // background:"linear-gradient(220.55deg, #565656 0%, #181818 100%)",
+            backgroundColor: "#fcfcfc",
+            display: "flex",
+            flexDirection: "column",
+            borderRadius: 4,
+            m: 10,
+            p: 5,
+            boxShadow: "10px 10px 5px 0px rgba(255,255,255, 0.45)",
+          }}
+        >
+          <Box sx={{ display: "flex" }}>
+            {" "}
+            <Typography component="h1" variant="h5">
+              <Avatar
+                sx={{ m: 1, bgcolor: "#212223", color: "#633fA4" }}
+              ></Avatar>{" "}
+              Ingresa
+            </Typography>
+          </Box>
 
-        <TextField
-          variant="outlined"
-          margin="normal"
-          id="email"
-          label="ingresa un mail"
-          name="email"
-          onChange={handlerInputs}
-          sx={{ color: "white" }}
-        />
-        <TextField
-          variant="outlined"
-          margin="normal"
-          id="password"
-          label="ingresa un password"
-          name="password"
-          onChange={handlerInputs}
-        />
-        <Link to="/">
-          <Button variant="contained" color="primary">
-            Ingresar
-          </Button>
-        </Link>
-        <Button variant="contained" color="secondary">
-          <ShoppingCartIcon color="primary">star</ShoppingCartIcon>Ir a mi
-          carrito
-        </Button>
-        <Typography variant="body1" component="p">
-          ¿No tenes cuenta? Registrate aquí
-        </Typography>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            id="email"
+            label="Ingresa un mail"
+            name="email"
+            onChange={handlerInputs}
+            sx={{ color: "white" }}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            id="password"
+            label="Ingresa un password"
+            name="password"
+            onChange={handlerInputs}
+          />
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <StyledButton
+              variant="contained"
+              color="primary"
+              xs={{
+                marginTop: "100px",
+              }}
+            >
+              Ingresar
+            </StyledButton>
+          </Link>
+          <StyledTypography variant="body1" component="p">
+            ¿No tenes cuenta? Registrate{" "}
+            <Link to="/signup" style={{ textDecoration: "none" }}>
+              aquí
+            </Link>
+          </StyledTypography>
+        </Box>
       </Box>
-    </Box>
+    </CssBaseline>
   );
 };
 

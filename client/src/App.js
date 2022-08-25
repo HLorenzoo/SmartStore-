@@ -7,12 +7,11 @@ function App() {
     <>
       <Box>
         {/* <Stack direction="row" spacing={2} justifyContent="space-evenly"> */}
-          {/* Navbar */}
-          {/* <Sidebar /> */}
-          {/* Content */}
+        <Navbar />
+        {/* <Sidebar /> */}
+        {/* Content */}
         {/* </Stack> */}
       </Box>
-
     </>
   );
 }

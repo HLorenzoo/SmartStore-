@@ -21,6 +21,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../state/login";
+import "animate.css";
 
 const StyledToolBar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -84,7 +85,10 @@ const Navbar = () => {
   const user = useSelector((state) => state.user);
 
   return (
-    <AppBar position="fixed">
+    <AppBar
+      position="fixed"
+      className="animate__animated animate__fadeInDown animate__delay-1s animated__faster	"
+    >
       <StyledToolBar>
         <Link to="/" style={{ textDecoration: "none", color: "white" }}>
           {" "}

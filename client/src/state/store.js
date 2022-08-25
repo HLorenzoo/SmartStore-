@@ -4,7 +4,7 @@ import loginReducer from "./login";
 const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   reducer: {
-    login: loginReducer,
+    user: loginReducer,
   },
 });
 

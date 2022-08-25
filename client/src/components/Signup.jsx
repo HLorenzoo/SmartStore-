@@ -1,20 +1,30 @@
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { Typography, Box } from "@mui/material";
-
+import { Typography, Box, Avatar } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { signUp } from "../state/login";
+import { useNavigate } from "react-router";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 const Signup = () => {
-  const [user, setUser] = useState({
-    usuario:"",
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [register, setRegister] = useState({
+    username: "",
     email: "",
     password: "",
-    telefono:"",
-
+    provincia: "",
+    direccion: "",
+    tel: "",
   });
 
   const handlerInputs = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user);
+    setRegister({ ...register, [e.target.name]: e.target.value });
+    console.log(register);
+  };
+  const handleRegister = () => {
+    dispatch(signUp(register)).then(() => navigate("/"));
   };
 
   return (
@@ -23,9 +33,10 @@ const Signup = () => {
         backgroundColor: "#212223",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: "center",
         width: "100%",
+        minHeight: "100vh",
       }}
     >
       <Box
@@ -37,20 +48,25 @@ const Signup = () => {
           m: 10,
           p: 5,
           boxShadow: "10px 10px 5px 0px rgba(255,255,255, 0.45)",
-          
         }}
       >
-        <Typography variant="body1" component="p">
-        ¿no tenes cuenta? registrate aqui
-        </Typography>
+        <Box sx={{ display: "flex" }}>
+          {" "}
+          <Typography component="h1" variant="h5">
+            <Avatar sx={{ m: 1, bgcolor: "#212223", color: "#633fA4" }}>
+              <LockOutlinedIcon />
+            </Avatar>{" "}
+            Registrarse
+          </Typography>
+        </Box>
 
         <TextField
           variant="outlined"
           margin="normal"
-          id="usuario"
+          id="username"
           label="ingresa un usuario"
-          name="usuario"
-          onChange ={handlerInputs}
+          name="username"
+          onChange={handlerInputs}
         />
         <TextField
           variant="outlined"
@@ -58,7 +74,8 @@ const Signup = () => {
           id="email"
           label="ingresa un email"
           name="email"
-          onChange ={handlerInputs}
+          type="email"
+          onChange={handlerInputs}
         />
         <TextField
           variant="outlined"
@@ -66,25 +83,44 @@ const Signup = () => {
           id="password"
           label="ingresa un password"
           name="password"
-          onChange ={handlerInputs}
+          type="password"
+          onChange={handlerInputs}
+        />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          id="direccion"
+          label="ingresa una Provincia"
+          name="provincia"
+          onChange={handlerInputs}
         />
         <TextField
           variant="outlined"
           margin="normal"
           id="direccion"
           label="ingresa una dirección"
-          name="password"
-          onChange ={handlerInputs}
+          name="direccion"
+          onChange={handlerInputs}
         />
         <TextField
           variant="outlined"
           margin="normal"
-          id="telefono"
+          id="tel"
           label="ingresa un numero de telefono"
-          name="telefono"
-          onChange ={handlerInputs}
+          name="tel"
+          type="text"
+          onChange={handlerInputs}
         />
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: "#8d69d4",
+            "&:hover": {
+              backgroundColor: "#633fa4",
+            },
+          }}
+          onClick={handleRegister}
+        >
           Ingresar
         </Button>
         <Typography variant="body1" component="p">
@@ -95,7 +131,4 @@ const Signup = () => {
   );
 };
 
-
-export default Signup
-
-
+export default Signup;

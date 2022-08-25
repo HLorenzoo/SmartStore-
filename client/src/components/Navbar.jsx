@@ -18,7 +18,9 @@ import {
 } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../state/login";
 
 const StyledToolBar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -63,6 +65,8 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 }));
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [input, setInput] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -73,6 +77,11 @@ const Navbar = () => {
   const handleSubmit = (e) => {
     console.log("click");
   };
+
+  const handleLogOut = () => {
+    dispatch(logOut()).then(() => navigate("/"));
+  };
+  const user = useSelector((state) => state.user);
 
   return (
     <AppBar position="fixed">
@@ -111,9 +120,10 @@ const Navbar = () => {
           >
             <ShoppingCartOutlinedIcon
               sx={{ color: "white", fontSize: 25 }}
-            ></ShoppingCartOutlinedIcon>{" "}
+            ></ShoppingCartOutlinedIcon>
           </IconButton>
           <IconButton
+            onClick={(e) => setOpen(true)}
             sx={{
               borderRadius: 10,
               backgroundColor: "#27333D",
@@ -127,44 +137,72 @@ const Navbar = () => {
                 fontSize: 25,
                 color: "white",
               }}
-              onClick={(e) => setOpen(true)}
-            ></AccountCircleOutlinedIcon>{" "}
+            ></AccountCircleOutlinedIcon>
           </IconButton>
         </Icons>
       </StyledToolBar>
-      <Dialog
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
-        open={open}
-        onClose={(e) => setOpen(false)}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "10px",
-          }}
+      {user.username ? (
+        <Dialog
+          id="demo-positioned-menu"
+          aria-labelledby="demo-positioned-button"
+          open={open}
+          onClose={(e) => setOpen(false)}
         >
-          <MenuItem>
-            {" "}
-            <AccountCircleOutlinedIcon />{" "}
-          </MenuItem>
-          <MenuItem>
-            {" "}
-            <Link to="/signup">
-              {" "}
-              <Button>Sign Up</Button>{" "}
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/login">
-              {" "}
-              <Button>Login</Button>{" "}
-            </Link>
-          </MenuItem>
-        </Box>
-      </Dialog>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <MenuItem>
+              <AccountCircleOutlinedIcon sx={{ fontSize: 30 }} />
+              <Link to="/user" style={{ textDecoration: "none", color: "" }}>
+                <Typography variant="h5" color="black">
+                  {user.username}
+                </Typography>
+              </Link>
+            </MenuItem>
+
+            <MenuItem>
+              <Link to="/login">
+                <Button onClick={handleLogOut}>LogOut</Button>
+              </Link>
+            </MenuItem>
+          </Box>
+        </Dialog>
+      ) : (
+        <Dialog
+          id="demo-positioned-menu"
+          aria-labelledby="demo-positioned-button"
+          open={open}
+          onClose={(e) => setOpen(false)}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <MenuItem>
+              <AccountCircleOutlinedIcon />
+            </MenuItem>
+            <MenuItem>
+              <Link to="/signup">
+                <Button>Sign Up</Button>
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to="/login">
+                <Button>Login</Button>
+              </Link>
+            </MenuItem>
+          </Box>
+        </Dialog>
+      )}
     </AppBar>
   );
 };

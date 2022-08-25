@@ -59,9 +59,9 @@ const fakeData = [
     cantidad: 80,
   },
   {
-    name: "POWERED para iPhone",
+    name: "CÁMARA WEB HD LOGITECH C505",
     description:
-      "La carga inalámbrica con iPhone debería ser una experiencia sublime. No te conformes con nada inferior. Elige POWERED para iPhone, el único soporte de carga inalámbrica a la altura de la magia del iPhone.",
+      "Vaya más allá de los componentes ópticos integrados en los portátiles con la cámara Web C505 que ofrece vídeo colorido, nítido y fluido con formato panorámico HD 720p, ángulo de visión diagonal de 60°, foco fijo y corrección de iluminación automática. • Y además ofrecerá un sonido estupendo gracias a un micrófono omnidireccional que garantiza una conversación clara y natural hasta a 3 metros de distancia.",
     rating: [4],
     Reviews: [],
     image: [

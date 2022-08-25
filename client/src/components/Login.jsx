@@ -64,13 +64,9 @@ const Login = () => {
         <Button variant="contained" color="primary">
           Ingresar
         </Button>
-
         <Button variant="contained" color="secondary">
           <ShoppingCartIcon color="primary">star</ShoppingCartIcon>Ir a mi carrito
         </Button>
-
-
-
         <Typography variant="body1" component="p">
           ¿no tenes cuenta? registrate aqui
         </Typography>

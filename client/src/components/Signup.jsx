@@ -2,19 +2,25 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Typography, Box } from "@mui/material";
-
+import { useDispatch } from "react-redux";
+import { signUp } from "../state/login";
 const Signup = () => {
-  const [user, setUser] = useState({
-    usuario:"",
+  const dispatch = useDispatch();
+  const [register, setregister] = useState({
+    username: "",
     email: "",
     password: "",
-    telefono:"",
-
+    tel: "",
+    direccion: "",
+    provincia: "",
   });
 
   const handlerInputs = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user);
+    setregister({ ...register, [e.target.name]: e.target.value });
+    console.log(register);
+  };
+  const handleRegister = (e) => {
+    dispatch(signUp(register)).then(() => console.log("registrado"));
   };
 
   return (
@@ -28,6 +34,10 @@ const Signup = () => {
         width: "100%",
       }}
     >
+      {" "}
+      <Typography variant="h2" color="white">
+        {register.username}
+      </Typography>
       <Box
         backgroundColor="white"
         sx={{
@@ -37,20 +47,19 @@ const Signup = () => {
           m: 10,
           p: 5,
           boxShadow: "10px 10px 5px 0px rgba(255,255,255, 0.45)",
-          
         }}
       >
         <Typography variant="body1" component="p">
-        ¿no tenes cuenta? registrate aqui
+          ¿no tenes cuenta? registrate aqui
         </Typography>
 
         <TextField
           variant="outlined"
           margin="normal"
-          id="usuario"
+          id="username"
           label="ingresa un usuario"
-          name="usuario"
-          onChange ={handlerInputs}
+          name="username"
+          onChange={handlerInputs}
         />
         <TextField
           variant="outlined"
@@ -58,7 +67,7 @@ const Signup = () => {
           id="email"
           label="ingresa un email"
           name="email"
-          onChange ={handlerInputs}
+          onChange={handlerInputs}
         />
         <TextField
           variant="outlined"
@@ -66,7 +75,7 @@ const Signup = () => {
           id="password"
           label="ingresa un password"
           name="password"
-          onChange ={handlerInputs}
+          onChange={handlerInputs}
         />
         <TextField
           variant="outlined"
@@ -74,17 +83,25 @@ const Signup = () => {
           id="direccion"
           label="ingresa una dirección"
           name="password"
-          onChange ={handlerInputs}
+          onChange={handlerInputs}
         />
         <TextField
           variant="outlined"
           margin="normal"
           id="telefono"
           label="ingresa un numero de telefono"
-          name="telefono"
-          onChange ={handlerInputs}
+          name="tel"
+          onChange={handlerInputs}
         />
-        <Button variant="contained" color="primary">
+        <TextField
+          variant="outlined"
+          margin="normal"
+          id="telefono"
+          label="ingresa tu provincia"
+          name="provincia"
+          onChange={handlerInputs}
+        />
+        <Button variant="contained" color="primary" onClick={handleRegister}>
           Ingresar
         </Button>
         <Typography variant="body1" component="p">
@@ -95,7 +112,4 @@ const Signup = () => {
   );
 };
 
-
-export default Signup
-
-
+export default Signup;

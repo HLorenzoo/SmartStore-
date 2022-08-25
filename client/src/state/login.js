@@ -4,6 +4,7 @@ import axios from "axios";
 //actions
 export const signUp = createAsyncThunk("SIGN_UP", async (user) => {
   const res = await axios.post("/api/auth/signup", user);
+  console.log("singup", res);
   return res.data;
 });
 export const logIn = createAsyncThunk("LOG_IN", async (user) => {

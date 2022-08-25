@@ -1,12 +1,14 @@
 import React from "react";
 
 import { Box } from "@mui/material";
-import axios from "axios";
+import ProductsGrill from "./components/ProductsGrill"
+
+
 function App() {
   return (
     <>
       <Box>
-        </>
+        <ProductsGrill/>
       </Box>
 
     </>

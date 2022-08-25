@@ -19,8 +19,6 @@ function App() {
   }, []);
 
   return (
-
-
     <>
       <CssBaseline />
       <Box
@@ -35,10 +33,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/user" element={<h1>{usuario.username}</h1>} />
         </Routes>
       </Box>
     </>
-
   );
 }
 

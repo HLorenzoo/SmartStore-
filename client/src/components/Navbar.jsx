@@ -86,13 +86,17 @@ const Navbar = () => {
   return (
     <AppBar position="fixed">
       <StyledToolBar>
-        <StyledTypography
-          variant="h5"
-          sw={{ color: "white", marginLeft: "40px" }}
-        >
-          SmartStore
-          <StyledIcon sw={{ color: "#633fA4" }} />
-        </StyledTypography>
+        <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+          {" "}
+          <StyledTypography
+            variant="h5"
+            sw={{ color: "white", marginLeft: "40px" }}
+          >
+            SmartStore
+            <StyledIcon sw={{ color: "#633fA4" }} />
+          </StyledTypography>
+        </Link>
+
         <Search>
           <FormControl>
             <StyledInputBase
@@ -123,7 +127,7 @@ const Navbar = () => {
             ></ShoppingCartOutlinedIcon>
           </IconButton>
           <IconButton
-            onClick={(e) => setOpen(true)}
+            onClick={(e) => setOpen(!open)}
             sx={{
               borderRadius: 10,
               backgroundColor: "#27333D",
@@ -166,7 +170,7 @@ const Navbar = () => {
             </MenuItem>
 
             <MenuItem>
-              <Link to="/login">
+              <Link to="/">
                 <Button onClick={handleLogOut}>LogOut</Button>
               </Link>
             </MenuItem>
@@ -192,12 +196,12 @@ const Navbar = () => {
             </MenuItem>
             <MenuItem>
               <Link to="/signup">
-                <Button>Sign Up</Button>
+                <Button onClick={() => setOpen(!open)}>Sign Up</Button>
               </Link>
             </MenuItem>
             <MenuItem>
               <Link to="/login">
-                <Button>Login</Button>
+                <Button onClick={() => setOpen(!open)}>Login</Button>
               </Link>
             </MenuItem>
           </Box>

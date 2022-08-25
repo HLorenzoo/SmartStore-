@@ -60,6 +60,51 @@ class UserService {
       console.error("error existente en addFav- SERVICE", error.message);
     }
   }
+  static async addAdmin(id) {
+    try {
+      return await User.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            isAdmin: true,
+          },
+        },
+        { new: true }
+      );
+    } catch (error) {
+      console.error("error existente en addAdmin- SERVICE", error.message);
+    }
+  }
+  static async deleteAdmin(id) {
+    try {
+      return await User.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            isAdmin: false,
+          },
+        },
+        { new: true }
+      );
+    } catch (error) {
+      console.error("error existente en deleteAdmin- SERVICE", error.message);
+    }
+  }
+  static async editUser(id,body) {
+    try {
+      return await User.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            body
+          },
+        },
+        { new: true }
+      );
+    } catch (error) {
+      console.error("error existente en deleteAdmin- SERVICE", error.message);
+    }
+  }
 }
 
 module.exports = UserService;

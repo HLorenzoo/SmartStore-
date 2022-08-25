@@ -8,9 +8,10 @@ router.post("/favoritos/:_id", UserController.addFav);
 
 // --- DEBERIA SER DE ADMIN
 //GET
-router.get("/", verifyTokenAdmin, UserController.getAllUser);
+router.get("/", UserController.getAllUser);
 
 //PUT
 router.put("/:_id", verifyTokenAdmin, UserController.deleteUser);
-
+router.put("/admin/:_id", UserController.addAdmin);
+router.put("/dadmin/:_id", UserController.deleteAdmin);
 module.exports = router;

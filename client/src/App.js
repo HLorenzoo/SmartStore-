@@ -20,6 +20,7 @@ function App() {
 
   return (
     <>
+
       <CssBaseline />
       <Box
         sx={{
@@ -34,6 +35,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+
       </Box>
     </>
   );

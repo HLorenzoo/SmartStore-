@@ -202,12 +202,12 @@ const Navbar = () => {
               <AccountCircleOutlinedIcon />
             </MenuItem>
             <MenuItem>
-              <Link to="/signup">
+              <Link to="/signup" style={{ textDecoration: "none" }}>
                 <Button onClick={() => setOpen(!open)}>Sign Up</Button>
               </Link>
             </MenuItem>
             <MenuItem>
-              <Link to="/login">
+              <Link to="/login" style={{ textDecoration: "none" }}>
                 <Button onClick={() => setOpen(!open)}>Login</Button>
               </Link>
             </MenuItem>

@@ -73,7 +73,9 @@ const Sidebar = () => {
             <ListItemIcon>
               <AccountCircleOutlinedIcon />
             </ListItemIcon>
-            <StyledInputText primary={user ? user.username : "Profile"} />
+            <StyledInputText
+              primary={user.username ? user.username : "Profile"}
+            />
           </ListItemButton>
         </ListItem>
         <ListItem>

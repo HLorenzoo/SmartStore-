@@ -51,7 +51,7 @@ const Header = () => {
           justifyContent="center"
           className="animate__animated animate__fadeInDown "
         >
-          <Stack spacing={1}>
+          <Stack spacing={1} sx={{ m: 2 }}>
             <Rating
               sx={{ position: "relative" /*  left: "400px", top: "200px" */ }}
               name="read-only"
@@ -73,7 +73,7 @@ const Header = () => {
               "&:hover": {
                 backgroundColor: "#633fa4",
               },
-             /*  position: "relative", */
+              /*  position: "relative", */
               width: "60%",
               minWidth: "50%",
               /*  right: "80px",

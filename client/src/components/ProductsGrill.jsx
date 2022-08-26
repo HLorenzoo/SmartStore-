@@ -30,9 +30,15 @@ const ProductsGrill = () => {
           sx={{ p: 8, ml: "250px", maxWidth: "85vw" }}
         >
           {fakeData.map((card) => (
-            <Grid item key={card.name} xs={12} sm={6} md={4}>
+            <Grid
+              item
+              key={card.name}
+              xs={12}
+              sm={6}
+              md={4}
+              className="animate__animated animate__fadeInUp animate__slow"
+            >
               <Card
-                className="animate__animated animate__fadeInUp animate__slow"
                 sx={{
                   height: "80%",
                   display: "flex",

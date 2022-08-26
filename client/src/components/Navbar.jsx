@@ -80,14 +80,14 @@ const Navbar = () => {
   };
 
   const handleLogOut = () => {
-    dispatch(logOut()).then(() => navigate("/"));
+    dispatch(logOut()).then(() => setOpen(!open), navigate("/"));
   };
   const user = useSelector((state) => state.user);
 
   return (
     <AppBar
       position="fixed"
-      className="animate__animated animate__fadeInDown animate__delay-1s animated__faster	"
+      /*  className="animate__animated animate__fadeInDown animate__delay-1s animated__faster	" */
     >
       <StyledToolBar>
         <Link to="/" style={{ textDecoration: "none", color: "white" }}>
@@ -97,7 +97,10 @@ const Navbar = () => {
             sw={{ color: "white", marginLeft: "40px" }}
           >
             SmartStore
-            <StyledIcon sw={{ color: "#633fA4" }} />
+            <StyledIcon
+              className="animate__animated animate__bounceInDown animate__fast"
+              sw={{ color: "#633fA4" }}
+            />
           </StyledTypography>
         </Link>
 
@@ -174,7 +177,7 @@ const Navbar = () => {
             </MenuItem>
 
             <MenuItem>
-              <Link to="/">
+              <Link to="/" style={{ textDecoration: "none" }}>
                 <Button onClick={handleLogOut}>LogOut</Button>
               </Link>
             </MenuItem>

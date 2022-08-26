@@ -23,6 +23,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import "animate.css";
+import { useSelector } from "react-redux";
 
 const StyledIcon = styled(ListItemIcon)(({ theme }) => ({
   position: "relative",
@@ -42,6 +43,7 @@ const Sidebar = () => {
     setOpen(!open);
   };
 
+  const user = useSelector((state) => state.user);
   return (
     <Stack
       sx={{
@@ -71,7 +73,7 @@ const Sidebar = () => {
             <ListItemIcon>
               <AccountCircleOutlinedIcon />
             </ListItemIcon>
-            <StyledInputText primary="Profile" />
+            <StyledInputText primary={user ? user.username : "Profile"} />
           </ListItemButton>
         </ListItem>
         <ListItem>

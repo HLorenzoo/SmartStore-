@@ -4,8 +4,10 @@ import TextField from "@mui/material/TextField";
 import { Typography, Box, CssBaseline, Avatar, styled } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { logIn } from "../state/login";
 const Login = () => {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -29,6 +31,9 @@ const Login = () => {
   const StyledTypography = styled(Typography)(({ theme }) => ({
     marginTop: "15px",
   }));
+  const handleLogin = ()=>{
+    dispatch(logIn(user))
+  }
   return (
     <CssBaseline>
       <Box
@@ -80,10 +85,12 @@ const Login = () => {
             id="password"
             label="Ingresa un password"
             name="password"
+            type="password"
             onChange={handlerInputs}
           />
           <Link to="/" style={{ textDecoration: "none" }}>
-            <StyledButton
+            <StyledButton 
+            onClick={handleLogin}
               variant="contained"
               color="primary"
               xs={{

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
+import { fakeData } from "./fakelist";
 import "animate.css";
 const StyledCard = styled(CardMedia)(({ theme }) => ({
   maxWidth: "610px",
@@ -39,6 +40,7 @@ const StyledTypography2 = styled(Typography)(({ theme }) => ({
   left: "60px", */
 }));
 
+const image = fakeData[Math.floor(Math.random() * 5 + 1)];
 const Header = () => {
   return (
     <Box display="flex" flexDirection="column" justifyContent="center">
@@ -60,31 +62,35 @@ const Header = () => {
               sw={{ position: "relative" /* left: "250px", top: "250px" */ }}
               variant="h3"
             >
-              HUAWEI
+              {image.marca}
             </StyledTypography2>
-            <StyledTypography variant="h3"> FreeBuds Studio</StyledTypography>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "#8d69d4",
-                "&:hover": {
-                  backgroundColor: "#633fa4",
-                },
-                position: "relative",
-                /*  right: "80px",
-            top: "370px", */
-              }}
-            >
-              Buy NOW!
-            </Button>
+            <StyledTypography variant="h3">{image.name}</StyledTypography>
           </Stack>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#8d69d4",
+              "&:hover": {
+                backgroundColor: "#633fa4",
+              },
+             /*  position: "relative", */
+              width: "60%",
+              minWidth: "50%",
+              /*  right: "80px",
+            top: "370px", */
+            }}
+          >
+            Buy NOW!
+          </Button>
         </Box>
 
         <StyledCard
           className="animate__animated animate__fadeInDown "
           component="img"
           height="500"
-          image="https://consumer.huawei.com/content/dam/huawei-cbg-site/en/mkt/plp/headphones/02-list-freebuds-studio-v1.jpg"
+          /* image="https://consumer.huawei.com/content/dam/huawei-cbg-site/en/mkt/plp/headphones/02-list-freebuds-studio-v1.jpg"
+           */
+          image={image.image}
           alt="green iguana"
           sx={{
             /*   border: "1px solid red", */

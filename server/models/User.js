@@ -43,6 +43,10 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  userSatus: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 // Schema Hook => hash de la password y creacion del salt del usuario

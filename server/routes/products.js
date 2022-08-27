@@ -6,8 +6,8 @@ const { verifyTokenAdmin } = require("../middelware/auth.middelware");
 router.post("/", ProductController.createProduct);//Ok
 
 router.get("/", ProductController.getAllProduct);//Ok
-router.get("/showByCategory/:category", ProductController.getProductByCategory);
+router.get("/:category", ProductController.getProductByCategory);//Ok
 
 //router.put("/admin/deleteProduct/:_id", ProductController.deleteProduct);
-router.put("/deleteProduct/:_id", ProductController.deleteProduct);
+router.put("/:_id", ProductController.deleteProduct);
 module.exports = router;

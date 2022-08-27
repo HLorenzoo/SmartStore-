@@ -4,7 +4,7 @@ class ProductService {
     static async createProduct(reqbody) {
         try {
             let product = new Product(reqbody);
-            return await product.save( { } );
+            return await product.save({});
         } catch (error) {
             console.error("error existente en createProduct- SERVICE", error.message);
         }
@@ -14,6 +14,7 @@ class ProductService {
         try {
             let product = await Product.find(
                 { unique: true },
+                { productStatus: true },
             );
             return product;
         } catch (error) {
@@ -21,16 +22,15 @@ class ProductService {
         }
     }
 
-    static async getProductByCategory(categoria) {
+    static async getProductByCategory(category) {
         try {
             let product = await Product.find(
-                //{category: categoria},
-                //{ unique: true},
-                { category : categoria},
+                { category: category },
+                { productStatus: true },
             );
             return product;
         } catch (error) {
-            console.error("error existente en getAllProductByCategory- SERVICE", error.message);
+            console.error("error existente en getProductByCategory- SERVICE", error.message);
         }
     }
 
@@ -38,7 +38,7 @@ class ProductService {
         try {
             return await Product.findByIdAndUpdate(
                 id,
-                { unique: true },
+                { productStatus: false },
             );
         } catch (error) {
             console.error("error existente en deleteProduct- SERVICE", error.message);

@@ -14,7 +14,6 @@ class UserController {
   static async getAllUser(req, res, next) {
     try {
       const users = await UserService.getAllUser();
-
       users && res.status(200).send(users);
       users || res.sendStatus(500);
     } catch (error) {

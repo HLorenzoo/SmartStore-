@@ -8,6 +8,7 @@ const { verifyToken } = require("../middelware/auth.middelware");
 
 router.post("/signup", AuthController.register);
 router.post("/login", AuthController.signIn);
-router.get("/me", verifyToken, (req, res) => res.send(req.user));
+//router.get("/me", verifyToken, (req, res) => res.send(req.user));
+router.get("/me", verifyToken);
 router.post("/logout", AuthController.logOut);
 module.exports = router;

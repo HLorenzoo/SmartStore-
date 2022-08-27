@@ -1,15 +1,14 @@
 const ProductService = require("../service/product.service");
-//const jwt = require("jsonwebtoken");
-//const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 class ProductController {
   static async createProduct(req, res, next) {
     try {
-      const { _id } = req.params;
-      const productUpdated = await ProductService.createProduct(_id);
-      productUpdated && res.status(200).send(productUpdated);
+      const product = await ProductService.createProduct(req.body);
+      res.status(201).send(product); 
     } catch (error) {
-      return res.status(500).json({ error });
+      next();
     }
   }
 
@@ -27,6 +26,7 @@ class ProductController {
   static async getProductByCategory(req, res, next) {
     try {
       const { category } = req.body;
+      console.log(category);
       if (category) {
         productUpdated = await ProductService.getProductByCategory(category);
         productUpdated && res.status(202).send(productUpdated);
@@ -40,7 +40,6 @@ class ProductController {
   static async deleteProduct(req, res, next) {
     try {
       const { _id } = req.params;
-      //console.log(_id);
       const productUpdated = await ProductService.deleteProduct(_id);
       productUpdated && res.status(200).send(productUpdated);
     } catch (error) {

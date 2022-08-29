@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const UserController = require("../controllers/user.controller");
 const { verifyTokenAdmin } = require("../middelware/auth.middelware");
+//GET
+router.get("/:_id", UserController.findOneUser);
+
 //POST
 router.post("/ordenes/:_id", UserController.addProduct);
 router.post("/favoritos/:_id", UserController.addFav);

@@ -1,0 +1,104 @@
+import {
+  Box,
+  Typography,
+  Rating,
+  CardMedia,
+  styled,
+  Button,
+  Card,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { fakeData } from "../fakedata/products";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import Reviews from "./Reviews";
+import axios from "axios";
+
+// const bgStyle = {
+//   backgroundColor: "primary.dark",
+//   // width: "70%"
+// };
+
+// imagen simple del producto
+const ProductImage = styled("img")(({ src, theme }) => ({
+  src: `url(${src})`,
+  width: "50%",
+  maxWidth: "500px",
+  // background: Colors.light_gray,
+  padding: "10px",
+  // [theme.breakpoints.down("md")]: {
+  //   width: "80%",
+  //   padding: '24px',
+  // },
+}));
+
+//* Setear producto actual
+// const [product, setProduct] = useState({})
+
+//* Obtener producto actual para renderizar
+//  React.useEffect(() => {
+//     axios.get(`rutadeback/:id`).then((product) => {
+//       setProduct(response.data);
+//     });
+//   }, []);
+
+const ProductDetails = () => {
+  // Aniadimos el id del producto a la tabla de carrito
+  const clickHandle = () => {
+    // axios.post("rutaCarrito", {id: product.id})
+    console.log("hola");
+  };
+
+  // Actualizamos el rating del producto
+  const updateRating = (event) => {
+    // setValue(even)j
+    // axios.post("rutaproducto/:id", {rating : value})
+    console.log("hola");
+  };
+
+  const sumArray = (rating) => {
+    return rating.reduce((a, b) => a + b, 0);
+  };
+
+  let sumado = sumArray(fakeData[0].rating);
+  // seteamos el valor del rating del producto
+  const [value, setValue] = useState(sumado / fakeData[0].rating.length);
+
+  return (
+    <>
+      <Box sx={{ display: "flex" }}>
+        <Typography variant="h1">{fakeData[0].name}</Typography>
+
+      <Card>
+        <CardMedia image="https://resource.logitechg.com/w_692,c_limit,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g305/g304-kda-gallery-1.png?v=1" />
+      </Card>
+        {/* <ProductImage src={fakeData[0].image} /> */}
+        <Button
+          variant="contained"
+          onClick={clickHandle}
+          endIcon={<AddShoppingCartIcon />}
+        >
+          Añadir
+        </Button>
+        {/* </Box> */}
+
+        <Typography variant="h5">
+          Precio:<Typography>{fakeData[0].price}$</Typography>
+        </Typography>
+        <Typography variant="h5">Valoracion</Typography>
+
+        <Rating
+          name="simple-controlled"
+          value={value}
+          onChange={() => updateRating()}
+        />
+
+        <Typography variant="h5">Descripcion</Typography>
+        <Typography>{fakeData[0].description}</Typography>
+
+        <Reviews />
+      </Box>
+    </>
+  );
+};
+
+export default ProductDetails;

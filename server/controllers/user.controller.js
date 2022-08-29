@@ -1,13 +1,14 @@
 const UserService = require("../service/user.service");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const User = require("../models/User");
 class UserController {
   static async getAllUser(req, res, next) {
     try {
       const users = await UserService.getAllUser();
 
       users && res.status(200).send(users);
-      users || res.sendStatus(500);
+      users || res.sendStatus(404);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
@@ -42,10 +43,9 @@ class UserController {
       const { favoritos } = req.body;
       if (favoritos) {
         console.log(_id, favoritos);
-        const userUpdated = await UserService.addProduct(_id, favoritos);
+        const userUpdated = await UserService.addFav(_id, favoritos);
         userUpdated && res.status(202).send(userUpdated);
       }
-      res.sendStatus(500);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
@@ -76,6 +76,15 @@ class UserController {
       userUpdated && res.status(202).send(userUpdated);
     } catch (error) {
       return res.status(500).json({ error: error.message });
+    }
+  }
+  static async findOneUser(req, res, next) {
+    try {
+      const { _id } = req.params;
+      const user = await User.findById(_id);
+      user && res.status(202).send(user);
+    } catch (error) {
+      return res.status(500).json({ error });
     }
   }
 }

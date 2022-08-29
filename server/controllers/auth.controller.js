@@ -1,5 +1,7 @@
 const UserService = require("../service/user.service");
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+const bcrypt = require("bcrypt");
 class AuthController {
   static async register(req, res, next) {
     try {
@@ -22,6 +24,7 @@ class AuthController {
         );
         const payload = jwt.verify(token, process.env.SECRET);
         req.user = payload;
+        console.log(payload);
         res.cookie("token", token, { maxAge: 999999 });
         res.status(201).send(req.user);
       }
@@ -34,11 +37,11 @@ class AuthController {
   static async signIn(req, res) {
     const user = await User.findOne({ email: req.body.email });
     if (!user) return res.sendStatus(401);
-    const { _id, username, email, password, salt, favorites } = user;
+    const { _id, username, email, password, salt, favoritos } = user;
     const passwordHash = bcrypt.hashSync(req.body.password, salt);
     if (passwordHash !== password) return res.sendStatus(401);
     if (passwordHash === password) {
-      const token = jwt.sign({ _id, username, email }, process.env.SECRET, {
+      const token = jwt.sign({ _id, username, email,favoritos }, process.env.SECRET, {
         expiresIn: "5d",
       });
       const payload = jwt.verify(token, process.env.SECRET);

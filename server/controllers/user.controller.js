@@ -43,12 +43,11 @@ class UserController {
       const { favoritos } = req.body;
       if (favoritos) {
         console.log(_id, favoritos);
-        const userUpdated = await UserService.addProduct(_id, favoritos);
+        const userUpdated = await UserService.addFav(_id, favoritos);
         userUpdated && res.status(202).send(userUpdated);
       }
-      res.sendStatus(500);
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ error: error.message });
     }
   }
   static async addAdmin(req, res, next) {

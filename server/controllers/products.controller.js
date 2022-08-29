@@ -8,7 +8,7 @@ class ProductController {
       const product = await ProductService.createProduct(req.body);
       res.status(201).send(product); 
     } catch (error) {
-      next();
+      return res.status(500).json({ error });
     }
   }
 
@@ -17,7 +17,7 @@ class ProductController {
       const category = await ProductService.createCategory(req.body);
       res.status(201).send(category);
     } catch (error) {
-      next();
+      return res.status(500).json({ error });
     }
   }
 

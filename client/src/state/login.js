@@ -16,6 +16,13 @@ export const sendMe = createAsyncThunk("ME_TOKENJWT", async () => {
 export const logOut = createAsyncThunk("LOG_OUT", async () => {
   return (await axios.post("/api/auth/logout")).data;
 });
+export const addFav = createAsyncThunk("ADD_FAV", async (producto, thunk) => {
+  const { user } = thunk.getState();
+  return await axios.post(`api/user/favoritos/${user._id}`, {
+    favoritos: producto,
+  }).data;
+});
+
 //reducer
 const loginReducer = createReducer([], {
   [signUp.fulfilled]: (state, action) => action.payload,

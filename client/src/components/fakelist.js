@@ -59,7 +59,7 @@ const fakeData = [
     cantidad: 80,
   },
   {
-    name: "CÁMARA WEB HD LOGITECH C505",
+    name: "CARGADOR IPHONE",
     description:
       "Vaya más allá de los componentes ópticos integrados en los portátiles con la cámara Web C505 que ofrece vídeo colorido, nítido y fluido con formato panorámico HD 720p, ángulo de visión diagonal de 60°, foco fijo y corrección de iluminación automática. • Y además ofrecerá un sonido estupendo gracias a un micrófono omnidireccional que garantiza una conversación clara y natural hasta a 3 metros de distancia.",
     rating: [4],

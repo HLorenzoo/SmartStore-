@@ -2,9 +2,8 @@ import { Divider, Grid, Typography, Button, Box, Rating } from "@mui/material";
 import React from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-const Info = ({ title, description, price, category }) => {
+const Info = ({ name, description, price, category }) => {
   const [value, setValue] = React.useState(2);
-
 
   const clickHandle = () => {
     // axios.post("rutaCarrito", {id: product.id})
@@ -16,7 +15,7 @@ const Info = ({ title, description, price, category }) => {
       <Typography variant="subtitle1">{category}</Typography>
       <Divider />
       <Box mt={2}>
-        <Typography variant="h4">{title}</Typography>
+        <Typography variant="h4">{name}</Typography>
         <Rating
           name="simple-controlled"
           value={value}
@@ -30,7 +29,7 @@ const Info = ({ title, description, price, category }) => {
       <Button
         variant="contained"
         color="primary"
-        onClick = {clickHandle}
+        onClick={clickHandle}
         style={{ marginTop: "auto" }}
         endIcon={<AddShoppingCartIcon />}
       >

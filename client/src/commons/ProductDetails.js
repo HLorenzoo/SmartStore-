@@ -19,7 +19,8 @@ import ImageGrid from "./ImageGrid";
 import Info from "./Info";
 import MainImage from "./MainImage";
 import axios from "axios";
-
+import { useLocation } from "react-router";
+/* 
 const images = fakeData[0].image;
 
 const product = {
@@ -27,9 +28,9 @@ const product = {
   description: fakeData[0].description,
   price: fakeData[0].price,
   category: fakeData[0].category,
-};
+}; */
 
-const ProductDetails = () => {
+const ProductDetails = ({ producto }) => {
   const [selectedImage, setSelectedImage] = useState(0);
 
   //* Obtener producto actual para renderizar
@@ -38,8 +39,6 @@ const ProductDetails = () => {
   //       setProduct(response.data);
   //     });
   //   }, []);
-
-
 
   return (
     <div>
@@ -50,19 +49,19 @@ const ProductDetails = () => {
         sx={{ maxWidth: 1100, margin: "0 auto" }}
       >
         <Grid item sm={1}>
-          <ImageGrid
+          {/*   <ImageGrid
             images={images}
             onSelect={setSelectedImage}
             selectedImage={selectedImage}
-          />
+          /> */}
         </Grid>
 
         <Grid item sm={5}>
-          <MainImage src={images[selectedImage]} />
+          <MainImage src={producto.image} />
         </Grid>
 
         <Grid item sm={6}>
-          <Info {...product} />
+          <Info {...producto} />
         </Grid>
       </Grid>
       <Divider sx={{ paddingBottom: "30px " }} />

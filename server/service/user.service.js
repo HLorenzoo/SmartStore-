@@ -105,6 +105,15 @@ class UserService {
       console.error("error existente en deleteAdmin- SERVICE", error.message);
     }
   }
+  static async findOneUser(id) {
+    try {
+      const { _id } = req.params;
+      const user = await User.findById(_id);
+      user && res.status(202).send(user);
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  }
 }
 
 module.exports = UserService;

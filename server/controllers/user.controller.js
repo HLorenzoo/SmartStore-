@@ -90,7 +90,7 @@ class UserController {
   static async findOneUser(req, res, next) {
     try {
       const { _id } = req.params;
-      const user = await User.findById(_id);
+      const user = await UserService.findOneUser(_id);
       user && res.status(202).send(user);
     } catch (error) {
       return res.status(500).json({ error });

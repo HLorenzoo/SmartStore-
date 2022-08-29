@@ -44,7 +44,7 @@ const Sidebar = () => {
   return (
     <Stack
       sx={{
-        paddingTop: "50px",
+        paddingTop: "60px",
         direction: "column",
         justifyContent: "flex-start",
         alignItems: "flex-start",

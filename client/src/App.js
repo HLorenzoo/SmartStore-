@@ -9,7 +9,7 @@ import Home from "./components/Home";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { sendMe } from "./state/login";
-
+import Perfil from "./components/Perfil";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +21,6 @@ function App() {
 
   return (
     <>
-
       <CssBaseline />
       <Box
         sx={{
@@ -35,8 +34,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Perfil />} />
         </Routes>
-
       </Box>
     </>
   );

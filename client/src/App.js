@@ -12,7 +12,7 @@ import { sendMe } from "./state/login";
 
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const usuario = useSelector((state) => state.user);
   useEffect(() => {

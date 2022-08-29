@@ -4,20 +4,20 @@ const ProductController = require("../controllers/products.controller");
 const { verifyTokenAdmin } = require("../middelware/auth.middelware");
 
 //POST
-router.post("/", ProductController.createProduct);//Ok
-router.post("/cat", ProductController.createCategory);//Ok
+router.post("/", ProductController.createProduct);
+router.post("/cat", ProductController.createCategory);
 
 //GET
-router.get("/", ProductController.getAllProduct);//Ok
-router.get("/:_id", ProductController.getProductById);//Ok
-router.get("/name/:name", ProductController.getProductByName);//Ok
-router.get("/cat/:category", ProductController.getProductByCategory);//Ok
+router.get("/", ProductController.getAllProduct);
+router.get("/:_id", ProductController.getProductById);
+router.get("/name/:name", ProductController.getProductByName);
+router.get("/cat/:category", ProductController.getProductByCategory);
 
 //PUT
-router.put("/edit/:_id", ProductController.editProduct);//Ok
-router.put("/cat/edit/:_id", ProductController.editCategory);//Ok
-router.put("/:_id", ProductController.deleteProduct);//Ok
-router.put("/cat/:_id", ProductController.deleteCategory);//Ok
+router.put("/edit/:_id", ProductController.editProduct);
+router.put("/cat/edit/:_id", ProductController.editCategory);
+router.put("/:_id", ProductController.deleteProduct);
+router.put("/cat/:_id", ProductController.deleteCategory);
 
 //CON PERSISTENCIA -ADMIN
 //POST

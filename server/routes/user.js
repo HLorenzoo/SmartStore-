@@ -11,10 +11,10 @@ router.post("/favoritos/:_id", UserController.addFav);
 
 // --- DEBERIA SER DE ADMIN
 //GET
-router.get("/", UserController.getAllUser);
+router.get("/", verifyTokenAdmin, UserController.getAllUser);
 
 //PUT
 router.put("/:_id", verifyTokenAdmin, UserController.deleteUser);
-router.put("/admin/:_id", UserController.addAdmin);
-router.put("/dadmin/:_id", UserController.deleteAdmin);
+router.put("/admin/:_id", verifyTokenAdmin, UserController.addAdmin);
+router.put("/dadmin/:_id", verifyTokenAdmin, UserController.deleteAdmin);
 module.exports = router;

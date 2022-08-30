@@ -63,6 +63,15 @@ class UserController {
       return res.status(500).json({ error: error.message });
     }
   }
+  static async deleteFav(req, res, next) {
+    try {
+      const _id = req.params._id;
+      const userUpdated = await UserService.deleteFav(_id, req.body.favorites);
+      res.status(200).send(userUpdated);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
   static async addAdmin(req, res, next) {
     try {
       const { _id } = req.params;

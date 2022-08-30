@@ -75,6 +75,22 @@ class UserService {
       console.error("error existente en addFav- SERVICE", error.message);
     }
   }
+  static async deleteFav(_id, favorites) {
+    try {
+      const user = await User.findByIdAndUpdate(
+        _id,
+        {
+          $pull: {
+            favorites: { id: favorites.id },
+          },
+        },
+        { new: true }
+      );
+      return user;
+    } catch (error) {
+      console.error({ error });
+    }
+  }
   static async addAdmin(id) {
     try {
       return await User.findByIdAndUpdate(

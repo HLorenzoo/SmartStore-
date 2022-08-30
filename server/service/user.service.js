@@ -90,13 +90,13 @@ class UserService {
       console.error("error existente en deleteAdmin- SERVICE", error.message);
     }
   }
-  static async editUser(id,body) {
+  static async editUser(id, body) {
     try {
       return await User.findByIdAndUpdate(
         id,
         {
           $set: {
-            body
+            body,
           },
         },
         { new: true }

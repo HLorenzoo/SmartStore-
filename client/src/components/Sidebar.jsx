@@ -22,7 +22,9 @@ import React, { useState } from "react";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
-
+import "animate.css";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const StyledIcon = styled(ListItemIcon)(({ theme }) => ({
   position: "relative",
   top: "15px",
@@ -41,10 +43,11 @@ const Sidebar = () => {
     setOpen(!open);
   };
 
+  const user = useSelector((state) => state.user);
   return (
     <Stack
       sx={{
-        paddingTop: "50px",
+        paddingTop: "65px",
         direction: "column",
         justifyContent: "flex-start",
         alignItems: "flex-start",
@@ -52,22 +55,33 @@ const Sidebar = () => {
       }}
     >
       <List
+        className="animate__animated animate__fadeInLeft animate__fast"
         sx={{
           width: "100%",
           maxWidth: 250,
           bgcolor: "background.paper",
           position: "fixed",
+          /* backgroundColor: "red", */
+          minHeight: "100vh",
+          boxShadow: "0px 10px 29px 5px rgba(0,0,0,0.58)",
         }}
         component="nav"
         aria-labelledby="nested-list-subheader"
       >
         <ListItem>
-          <ListItemButton>
-            <ListItemIcon>
-              <AccountCircleOutlinedIcon />
-            </ListItemIcon>
-            <StyledInputText primary="Profile" />
-          </ListItemButton>
+          <Link
+            to="/profile"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItemButton>
+              <ListItemIcon>
+                <AccountCircleOutlinedIcon />
+              </ListItemIcon>
+              <StyledInputText
+                primary={user.username ? user.username : "Profile"}
+              />
+            </ListItemButton>
+          </Link>
         </ListItem>
         <ListItem>
           <ListItemButton>

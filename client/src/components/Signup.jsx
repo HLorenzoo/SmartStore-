@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { signUp } from "../state/login";
 import { useNavigate } from "react-router";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Link } from "react-router-dom";
+
 const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -124,7 +126,10 @@ const Signup = () => {
           Ingresar
         </Button>
         <Typography variant="body1" component="p">
-          ¿Ya tenes una cuenta? Ingresa aqui
+          ¿Ya tenes una cuenta? Ingresa{" "}
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            aqui{" "}
+          </Link>
         </Typography>
       </Box>
     </Box>

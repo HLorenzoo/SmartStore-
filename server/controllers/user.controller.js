@@ -8,7 +8,7 @@ class UserController {
       const users = await UserService.getAllUser();
 
       users && res.status(200).send(users);
-      users || res.sendStatus(500);
+      users || res.sendStatus(404);
     } catch (error) {
       return res.status(500).json({ error });
     }

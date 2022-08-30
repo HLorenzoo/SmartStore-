@@ -2,19 +2,28 @@ import { Container, Grid, Paper, Typography, Box } from "@mui/material";
 import React, { useState } from "react";
 import Product2 from "./Product2";
 import { Link } from "react-router-dom";
-import Checkout from "../commons/Checkout"
+import Checkout from "../commons/Checkout";
 import { fakeData } from "./fakeData";
+import { useSelector } from "react-redux";
+import "../spinner.css";
 
 const Cart = () => {
-  // console.log(fakeData)
-
-  // const firstPrice =  fakeData.reduce((valor.price, ))
-  // forEach(prueba => console.log(prueba.price))
+  const { carrito } = useSelector((state) => state.user);
+  // console.log(carrito.length)
 
   const [totalPrice, setTotalPrice] = useState(fakeData);
 
+  // if (!carrito) {
+  //   return (
+  //     <div class="spinner">
+  //       <div class="double-bounce1"></div>
+  //       <div class="double-bounce2"></div>
+  //     </div>
+  //   );
+  // }
   return (
     <Container>
+      {/* // Titulo del carrito */}
       <Grid container spacing={3} my={0.3} paddingTop="100px">
         <Grid item xs={8} sx={{ marginBottom: -50 }}>
           <Paper elevation={1}>
@@ -32,7 +41,7 @@ const Cart = () => {
             </Box>
           </Paper>
         </Grid>
-
+        {/* // proceso del checkout */}
         <Grid item xs={4}>
           <Paper elevation={1}>
             <Box p={3}>
@@ -69,7 +78,12 @@ const Cart = () => {
           </Paper>
         </Grid>
 
+        {/* // tarjetas de aniadido carrito */}
         <Grid item xs={12} sx={{ marginTop: -10 }}>
+          {/* {carrito ? carrito.map((producto) => {
+            return <Product2 producto={producto} />
+          }) : <p>prueba carrito</p>} */}
+
           {fakeData.map((producto) => {
             return <Product2 producto={producto} />;
           })}

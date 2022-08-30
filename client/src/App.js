@@ -10,6 +10,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { sendMe } from "./state/login";
 import Perfil from "./components/Perfil";
+import Cart from "./components/Cart";
+import ProductDetails from "./commons/ProductDetails";
+import Product2 from "./components/Product2";
+import Checkout from "./components/Checkout"
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +40,11 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Perfil />} />
+          {/* Mis rutas de testeo */}
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/productDetail" element={<ProductDetails/>}/>
+          <Route path="/checkout" element={<Checkout/>}/>
+
         </Routes>
       </Box>
     </>

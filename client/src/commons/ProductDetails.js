@@ -46,7 +46,7 @@ const ProductDetails = () => {
       <Grid
         container
         spacing={1}
-        paddingTop="20px"
+        paddingTop="100px"
         sx={{ maxWidth: 1100, margin: "0 auto" }}
       >
         <Grid item sm={1}>

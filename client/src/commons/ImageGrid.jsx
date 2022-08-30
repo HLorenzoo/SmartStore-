@@ -7,7 +7,7 @@ const ImageGrid = ({ images, onSelect, selectedImage }) => {
       {images.map((image, i) => (
         <img
           src={image}
-          height={80}
+          height={70}
           onClick={() => onSelect(i)}
           style={{
             border: i === selectedImage ? "solid 1px black" : "solid 1px #eee",

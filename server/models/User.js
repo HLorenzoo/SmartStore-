@@ -40,6 +40,10 @@ const UserSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
+  carrito: {
+    type: Array,
+    default: [],
+  },
   salt: {
     type: String,
   },

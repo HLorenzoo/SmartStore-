@@ -69,7 +69,7 @@ const ProductDetails = () => {
         </Grid>
 
         <Grid item sm={6}>
-          <Info {...product} />
+          <Info producto={product} />
         </Grid>
       </Grid>
       <Divider sx={{ paddingBottom: "30px " }} />

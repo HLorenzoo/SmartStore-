@@ -15,6 +15,7 @@ import {
   MenuItem,
   Dialog,
   Typography,
+  Badge,
 } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchIcon from "@mui/icons-material/Search";
@@ -120,19 +121,23 @@ const Navbar = () => {
           </Icons>
         </Search>
         <Icons>
-          <IconButton
-            sx={{
-              borderRadius: 10,
-              backgroundColor: "#27333D",
-              "&:hover": {
-                backgroundColor: "#3F4B55",
-              },
-            }}
-          >
-            <ShoppingCartOutlinedIcon
-              sx={{ color: "white", fontSize: 25 }}
-            ></ShoppingCartOutlinedIcon>
-          </IconButton>
+          <Link to="/cart" style={{ textDecoration: "none" }}>
+            <IconButton
+              sx={{
+                borderRadius: 10,
+                backgroundColor: "#27333D",
+                "&:hover": {
+                  backgroundColor: "#3F4B55",
+                },
+              }}
+            >
+              <Badge badgeContent={user.carrito?.length} color="warning">
+                <ShoppingCartOutlinedIcon
+                  sx={{ color: "white", fontSize: 25 }}
+                />
+              </Badge>
+            </IconButton>
+          </Link>
           <IconButton
             onClick={(e) => setOpen(!open)}
             sx={{

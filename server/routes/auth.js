@@ -7,7 +7,7 @@ require("dotenv").config();
 const { verifyToken } = require("../middelware/auth.middelware");
 
 //GET
-router.get("/me", verifyToken, (req, res) => res.send(req.user));
+// router.get("/me", verifyToken, (req, res) => res.send(req.user));
 
 //post
 router.post("/signup", AuthController.register);

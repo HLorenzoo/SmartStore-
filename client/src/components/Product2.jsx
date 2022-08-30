@@ -16,11 +16,11 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { fakeData } from "./fakeData";
-
-
+import { useDispatch } from "react-redux";
+import { deleteFromCart } from "../state/login";
 const Product2 = ({ producto, seteo }) => {
-
   // Estados
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
 
   const [quantities, setQuantities] = useState([]);
@@ -40,7 +40,8 @@ const Product2 = ({ producto, seteo }) => {
     { length: producto.cantidad },
     (_, i) => i + 1
   );
-
+  console.log(producto);
+  const arrCant = [1, 2, 3, 4, 5];
 
   return (
     <Grid item xs={12} md={8} sx={{ marginBottom: 5 }}>
@@ -58,6 +59,7 @@ const Product2 = ({ producto, seteo }) => {
 
           <Box sx={{ display: "flex" }}>
             <Button
+              onClick={() => dispatch(deleteFromCart(producto))}
               variant="contained"
               color="warning"
               endIcon={<DeleteIcon />}
@@ -68,9 +70,12 @@ const Product2 = ({ producto, seteo }) => {
             <FormControl sx={{ minWidth: 70, marginLeft: 5, size: "small" }}>
               <InputLabel>Cantidad</InputLabel>
               <Select label="Cantidad" onChange={handleChange} value={quantity}>
-                {arrCantidades.map((n) => {
+                {/*  {arrCantidades.map((n) => {
                   return <MenuItem value={n}>{n}</MenuItem>;
-                })}
+                })} */}
+                {arrCant.map((n) => (
+                  <MenuItem value={n}>{n}</MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Box>

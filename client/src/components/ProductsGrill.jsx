@@ -1,9 +1,7 @@
 import * as React from "react";
 import {
   CardActions,
-  Container,
   Typography,
-  Box,
   Grid,
   CardMedia,
   CardContent,
@@ -11,13 +9,19 @@ import {
   Button,
   Pagination,
 } from "@mui/material";
-import { fakeData } from "../components/fakeData";
-import axios from "axios";
-
 import "animate.css";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getOne } from "../state/products";
+import { useNavigate } from "react-router";
 
 const ProductsGrill = () => {
+  const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = (product) => {
+    dispatch(getOne(product)).then(() => navigate(`/products/${product._id}`));
+  };
 
   return (
     <>
@@ -34,7 +38,7 @@ const ProductsGrill = () => {
           spacing={4}
           sx={{ p: 8, ml: "250px", maxWidth: "85vw" }}
         >
-          {fakeData.map((card) => (
+          {products?.map((card) => (
             <Grid
               item
               key={card.name}
@@ -63,7 +67,7 @@ const ProductsGrill = () => {
                     objectFit: "contain",
                     /* pt: "25px" */
                   }}
-                  image={card.image}
+                  image={card.image[0]}
                   alt="foto de producto"
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
@@ -78,6 +82,9 @@ const ProductsGrill = () => {
                   sx={{ display: "flex", justifyContent: "flex-end" }}
                 >
                   <Button
+                    onClick={() => {
+                      handleClick(card);
+                    }}
                     sx={{
                       backgroundColor: "#212223",
                       "&:hover": {

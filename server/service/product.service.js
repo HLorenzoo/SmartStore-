@@ -27,10 +27,7 @@ class ProductService {
 
   static async getAllProduct() {
     try {
-      let product = await Product.find(
-        { unique: true },
-        { productStatus: true }
-      );
+      let product = await Product.find();
       return product;
     } catch (error) {
       console.error("error existente en getAllProduct- SERVICE", error.message);

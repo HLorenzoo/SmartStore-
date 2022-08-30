@@ -20,6 +20,7 @@ import Info from "./Info";
 import MainImage from "./MainImage";
 import axios from "axios";
 import Sidebar from "../components/Sidebar";
+import { useLocation } from "react-router";
 
 const images = fakeData[0].image;
 
@@ -32,13 +33,15 @@ const product = {
 
 const ProductDetails = () => {
   const [selectedImage, setSelectedImage] = useState(0);
+  const url = useLocation().pathname.split("/products/")[1];
 
   //* Obtener producto actual para renderizar
-  //  React.useEffect(() => {
-  //     axios.get(`rutadeback/:id`).then((product) => {
-  //       setProduct(response.data);
-  //     });
-  //   }, []);
+
+  React.useEffect(() => {
+    axios.get(`/api/products/${url}`).then((product) => {
+      console.log("products", product.data.image[0].split("\"));
+    });
+  }, []);
 
   return (
     <div>

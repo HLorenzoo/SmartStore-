@@ -16,7 +16,7 @@ import { getAll } from "./state/products";
 function App() {
   const dispatch = useDispatch();
   const usuario = useSelector((state) => state.user);
-  
+
   useEffect(() => {
     dispatch(sendMe());
     dispatch(getAll());
@@ -39,7 +39,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Perfil />} />
-          <Route path="id" element={<ProductDetails />}></Route>
+          <Route path="/products/:id" element={<ProductDetails />}></Route>
         </Routes>
       </Box>
     </>

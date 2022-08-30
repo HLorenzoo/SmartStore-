@@ -24,7 +24,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import "animate.css";
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 const StyledIcon = styled(ListItemIcon)(({ theme }) => ({
   position: "relative",
   top: "15px",
@@ -69,14 +69,19 @@ const Sidebar = () => {
         aria-labelledby="nested-list-subheader"
       >
         <ListItem>
-          <ListItemButton>
-            <ListItemIcon>
-              <AccountCircleOutlinedIcon />
-            </ListItemIcon>
-            <StyledInputText
-              primary={user.username ? user.username : "Profile"}
-            />
-          </ListItemButton>
+          <Link
+            to="/profile"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItemButton>
+              <ListItemIcon>
+                <AccountCircleOutlinedIcon />
+              </ListItemIcon>
+              <StyledInputText
+                primary={user.username ? user.username : "Profile"}
+              />
+            </ListItemButton>
+          </Link>
         </ListItem>
         <ListItem>
           <ListItemButton>

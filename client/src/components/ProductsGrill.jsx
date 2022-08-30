@@ -9,11 +9,16 @@ import {
   CardContent,
   Card,
   Button,
+  Pagination,
 } from "@mui/material";
-import { fakeData } from "./fakelist";
+import { fakeData } from "../components/fakeData";
+import axios from "axios";
+
 import "animate.css";
+import { useEffect } from "react";
 
 const ProductsGrill = () => {
+
   return (
     <>
       <main>
@@ -92,6 +97,15 @@ const ProductsGrill = () => {
         </Grid>
         {/* </Container> */}
       </main>
+      <Pagination
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          marginLeft: "45px",
+        }}
+        count={3}
+      />
     </>
   );
 };

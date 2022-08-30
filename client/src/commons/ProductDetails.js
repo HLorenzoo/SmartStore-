@@ -12,13 +12,14 @@ import {
 
 import React, { useState } from "react";
 
-import { fakeData } from "../fakedata/products";
+import { fakeData } from "../components/fakeData";
 
 import Reviews from "./Reviews";
 import ImageGrid from "./ImageGrid";
 import Info from "./Info";
 import MainImage from "./MainImage";
 import axios from "axios";
+import Sidebar from "../components/Sidebar";
 
 const images = fakeData[0].image;
 
@@ -39,14 +40,12 @@ const ProductDetails = () => {
   //     });
   //   }, []);
 
-
-
   return (
     <div>
       <Grid
         container
         spacing={1}
-        paddingTop="20px"
+        paddingTop="100px"
         sx={{ maxWidth: 1100, margin: "0 auto" }}
       >
         <Grid item sm={1}>

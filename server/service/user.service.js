@@ -21,7 +21,6 @@ class UserService {
   }
   static async addProduct(id, ordenes) {
     try {
-
       return await User.findByIdAndUpdate(
         id,
         {
@@ -47,7 +46,7 @@ class UserService {
         },
         { new: true }
       );
-      return user
+      return user;
     } catch (error) {
       console.error("error existente en addToCart- SERVICE", error.message);
     }
@@ -58,11 +57,12 @@ class UserService {
         _id,
         {
           $pull: {
-            carrito: { id: producto.id },
+            carrito: { _id: producto._id },
           },
         },
         { new: true }
       );
+      console.log(user);
       return user;
     } catch (error) {
       console.error({ error });

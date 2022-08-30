@@ -16,9 +16,11 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { fakeData } from "./fakeData";
-
+import { useDispatch } from "react-redux";
+import { deleteFromCart } from "../state/login";
 const Product2 = ({ producto, seteo }) => {
   // Estados
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
 
   const [quantities, setQuantities] = useState([]);
@@ -57,6 +59,7 @@ const Product2 = ({ producto, seteo }) => {
 
           <Box sx={{ display: "flex" }}>
             <Button
+              onClick={() => dispatch(deleteFromCart(producto))}
               variant="contained"
               color="warning"
               endIcon={<DeleteIcon />}

@@ -16,6 +16,7 @@ router.get("/", verifyTokenAdmin, UserController.getAllUser);
 
 //PUT
 router.put("/deleteFav/:_id", UserController.deleteFav);
+router.put("/deletecarrito/:_id", UserController.deleteCart);
 router.put("/:_id", verifyTokenAdmin, UserController.deleteUser);
 router.put("/admin/:_id", verifyTokenAdmin, UserController.addAdmin);
 router.put("/dadmin/:_id", verifyTokenAdmin, UserController.deleteAdmin);

@@ -40,6 +40,15 @@ class UserController {
       return res.status(500).json({ error });
     }
   }
+  static async deleteCart(req, res, next) {
+    try {
+      const _id = req.params._id;
+      const userUpdated = await UserService.deleteCart(_id, req.body.carrito);
+      res.status(200).send(userUpdated);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
   static async deleteUser(req, res, next) {
     try {
       const { _id } = req.params;

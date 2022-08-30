@@ -36,7 +36,6 @@ class ProductController {
       const { _id } = req.params;
       const product = await ProductService.getProductById(_id);
       product && res.status(200).send(product);
-      product || res.sendStatus(500);
     } catch (error) {
       return res.status(500).json({ error });
     }

@@ -15,7 +15,8 @@ import {
   MenuItem,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { fakeData } from "../fakedata/products";
+import { fakeData } from "./fakeData";
+
 
 const Product2 = ({ producto, seteo }) => {
 

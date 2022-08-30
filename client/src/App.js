@@ -13,8 +13,7 @@ import Perfil from "./components/Perfil";
 import ProductDetails from "./commons/ProductDetails";
 import axios from "axios";
 import { getAll } from "./state/products";
-import Cart from "./components/Cart";
-import ProductDetails from "./commons/ProductDetails";
+import Cart from "./components/Cart"
 import Product2 from "./components/Product2";
 import Checkout from "./components/Checkout";
 

@@ -10,7 +10,7 @@ class UserController {
       users && res.status(200).send(users);
       users || res.sendStatus(404);
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ error: error.message });
     }
   }
   static async addProduct(req, res, next) {
@@ -24,7 +24,7 @@ class UserController {
       }
       res.sendStatus(404);
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ error: error.message });
     }
   }
   static async addToCart(req, res, next) {
@@ -47,7 +47,7 @@ class UserController {
       const userUpdated = await UserService.deleteUser(_id);
       userUpdated && res.status(204).send("Usuario Eliminado!.");
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ error: error.message });
     }
   }
   static async addFav(req, res, next) {
@@ -69,7 +69,7 @@ class UserController {
       const userUpdated = await UserService.addAdmin(_id);
       userUpdated && res.status(200).send(userUpdated);
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ error: error.message });
     }
   }
   static async deleteAdmin(req, res, next) {
@@ -79,17 +79,16 @@ class UserController {
       console.log(userUpdated);
       userUpdated && res.status(200).send(userUpdated);
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ error: error.message });
     }
   }
   static async editUser(req, res, next) {
     try {
       const { _id } = req.params;
       const userUpdated = await UserService.deleteAdmin(_id, req.body);
-      console.log(userUpdated);
       userUpdated && res.status(202).send(userUpdated);
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ error: error.message });
     }
   }
   static async findOneUser(req, res, next) {

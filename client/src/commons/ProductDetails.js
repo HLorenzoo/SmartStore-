@@ -10,55 +10,62 @@ import {
   Typography,
 } from "@mui/material";
 
-import React, { useState } from "react";
-
-import { fakeData } from "../fakedata/products";
+import React, { useEffect, useState } from "react";
+import "../style.css";
+import { fakeData } from "../components/fakeData";
 
 import Reviews from "./Reviews";
 import ImageGrid from "./ImageGrid";
 import Info from "./Info";
 import MainImage from "./MainImage";
 import axios from "axios";
+import Sidebar from "../components/Sidebar";
+import { useLocation } from "react-router";
 
-const images = fakeData[0].image;
-
-const product = {
-  title: fakeData[0].name,
-  description: fakeData[0].description,
-  price: fakeData[0].price,
-  category: fakeData[0].category,
-};
+// const product = {
+//   title: fakeData[0].name,
+//   description: fakeData[0].description,
+//   price: fakeData[0].price,
+//   category: fakeData[0].category,
+// };
 
 const ProductDetails = () => {
   const [selectedImage, setSelectedImage] = useState(0);
+  const url = useLocation().pathname.split("/products/")[1];
+  const [product, setProduct] = useState({});
 
   //* Obtener producto actual para renderizar
-  //  React.useEffect(() => {
-  //     axios.get(`rutadeback/:id`).then((product) => {
-  //       setProduct(response.data);
-  //     });
-  //   }, []);
+  useEffect(() => {
+    axios.get(`/api/products/${url}`).then((result) => setProduct(result.data));
+  }, []);
 
-
+  if (!product.name) {
+    return (
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    );
+  }
 
   return (
     <div>
       <Grid
         container
         spacing={1}
-        paddingTop="20px"
+        paddingTop="100px"
         sx={{ maxWidth: 1100, margin: "0 auto" }}
       >
         <Grid item sm={1}>
           <ImageGrid
-            images={images}
+            images={product.image}
             onSelect={setSelectedImage}
             selectedImage={selectedImage}
           />
         </Grid>
 
         <Grid item sm={5}>
-          <MainImage src={images[selectedImage]} />
+          <MainImage src={product.image[selectedImage]} />
         </Grid>
 
         <Grid item sm={6}>

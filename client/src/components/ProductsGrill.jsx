@@ -1,19 +1,28 @@
 import * as React from "react";
 import {
   CardActions,
-  Container,
   Typography,
-  Box,
   Grid,
   CardMedia,
   CardContent,
   Card,
   Button,
+  Pagination,
 } from "@mui/material";
-import { fakeData } from "./fakelist";
 import "animate.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getOne } from "../state/products";
+import { useNavigate } from "react-router";
 
 const ProductsGrill = () => {
+  const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = (product) => {
+    dispatch(getOne(product)).then(() => navigate(`/products/${product._id}`));
+  };
+
   return (
     <>
       <main>
@@ -29,7 +38,7 @@ const ProductsGrill = () => {
           spacing={4}
           sx={{ p: 8, ml: "250px", maxWidth: "85vw" }}
         >
-          {fakeData.map((card) => (
+          {products?.map((card) => (
             <Grid
               item
               key={card.name}
@@ -58,7 +67,7 @@ const ProductsGrill = () => {
                     objectFit: "contain",
                     /* pt: "25px" */
                   }}
-                  image={card.image}
+                  image={card.image[0]}
                   alt="foto de producto"
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
@@ -73,6 +82,9 @@ const ProductsGrill = () => {
                   sx={{ display: "flex", justifyContent: "flex-end" }}
                 >
                   <Button
+                    onClick={() => {
+                      handleClick(card);
+                    }}
                     sx={{
                       backgroundColor: "#212223",
                       "&:hover": {
@@ -92,6 +104,15 @@ const ProductsGrill = () => {
         </Grid>
         {/* </Container> */}
       </main>
+      <Pagination
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          marginLeft: "45px",
+        }}
+        count={3}
+      />
     </>
   );
 };

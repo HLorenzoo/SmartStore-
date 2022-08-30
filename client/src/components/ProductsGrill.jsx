@@ -58,56 +58,56 @@ const ProductsGrill = () => {
                 md={4}
                 className="animate__animated animate__fadeInUp animate__slow"
               >
-                <Link
-                  to={`product/${card.name}`}
-                  style={{ textDecoration: "none" }}
+                <Card
+                  sx={{
+                    height: "80%",
+                    display: "flex",
+                    flexDirection: "column",
+                    boxShadow:
+                      "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
+                    transition: "all .2s ease-in-out",
+                    "&:hover": { transform: "scale(1.05)" },
+                  }}
                 >
-                  <Card
+                  <CardMedia
+                    component="img"
                     sx={{
-                      height: "80%",
+                      maxHeight: "50%",
+                      // width: "320px",
+                      /* aspectRatio: "1/1", */
+                      objectFit: "contain",
+                      /* pt: "25px" */
+                    }}
+                    image={card.image}
+                    alt="foto de producto"
+                  />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {card.name}
+                    </Typography>
+                    <Typography>
+                      {`${card.description.substring(0, 130)}...`}
+                    </Typography>
+                  </CardContent>
+                  <CardActions
+                    sx={{
                       display: "flex",
-                      flexDirection: "column",
-                      boxShadow:
-                        "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
-                      transition: "all .2s ease-in-out",
-                      "&:hover": { transform: "scale(1.05)" },
+                      justifyContent: "space-between",
                     }}
                   >
-                    <CardMedia
-                      component="img"
-                      sx={{
-                        maxHeight: "50%",
-                        // width: "320px",
-                        /* aspectRatio: "1/1", */
-                        objectFit: "contain",
-                        /* pt: "25px" */
-                      }}
-                      image={card.image}
-                      alt="foto de producto"
-                    />
-                    <CardContent sx={{ flexGrow: 1 }}>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {card.name}
-                      </Typography>
-                      <Typography>
-                        {`${card.description.substring(0, 130)}...`}
-                      </Typography>
-                    </CardContent>
-                    <CardActions
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
+                    <IconButton onClick={() => handleFav(card)}>
+                      <FavoriteRoundedIcon
+                        sx={{
+                          color: fav ? "red" : "",
+                          transition: "all 0.3s ease-in-out",
+                          transform: fav ? "scale(1.1)" : "scale(0.9)",
+                        }}
+                      />
+                    </IconButton>
+                    <Link
+                      to={`product/${card.name}`}
+                      style={{ textDecoration: "none" }}
                     >
-                      <IconButton onClick={() => handleFav(card)}>
-                        <FavoriteRoundedIcon
-                          sx={{
-                            color: fav ? "red" : "",
-                            transition: "all 0.3s ease-in-out",
-                            transform: fav ? "scale(1.1)" : "scale(0.9)",
-                          }}
-                        />
-                      </IconButton>
                       <Button
                         sx={{
                           backgroundColor: "#212223",
@@ -120,10 +120,10 @@ const ProductsGrill = () => {
                         size="large"
                       >
                         Ver
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Link>
+                      </Button>{" "}
+                    </Link>
+                  </CardActions>
+                </Card>
               </Grid>
             );
           })}

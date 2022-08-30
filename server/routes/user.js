@@ -8,6 +8,7 @@ router.get("/:_id", UserController.findOneUser);
 //POST
 router.post("/ordenes/:_id", UserController.addProduct);
 router.post("/favoritos/:_id", UserController.addFav);
+router.post("/carrito/:_id", UserController.addToCart);
 
 // --- DEBERIA SER DE ADMIN
 //GET

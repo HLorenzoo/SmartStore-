@@ -27,6 +27,19 @@ class UserController {
       return res.status(500).json({ error });
     }
   }
+  static async addToCart(req, res, next) {
+    try {
+      const { _id } = req.params;
+      const { carrito } = req.body;
+      if (carrito) {
+        const userUpdated = await UserService.addToCart(_id, carrito);
+        res.status(202).send(userUpdated);
+      }
+      res.sendStatus(404);
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  }
   static async deleteUser(req, res, next) {
     try {
       const { _id } = req.params;

@@ -2,7 +2,7 @@ import { Container, Grid, Paper, Typography, Box } from "@mui/material";
 import React, { useState } from "react";
 import Product2 from "./Product2";
 import { Link } from "react-router-dom";
-import Checkout from "./Checkout";
+import Checkout from "../commons/Checkout"
 import { fakeData } from "./fakeData";
 
 const Cart = () => {

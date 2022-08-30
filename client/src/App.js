@@ -13,8 +13,12 @@ import Perfil from "./components/Perfil";
 import ProductDetails from "./commons/ProductDetails";
 import axios from "axios";
 import { getAll } from "./state/products";
-function App() {
+import Cart from "./components/Cart";
+import ProductDetails from "./commons/ProductDetails";
+import Product2 from "./components/Product2";
+import Checkout from "./components/Checkout";
 
+function App() {
   const dispatch = useDispatch();
 
   const usuario = useSelector((state) => state.user);
@@ -42,6 +46,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Perfil />} />
           <Route path="/products/:id" element={<ProductDetails />}></Route>
+          {/* Rutas de prueba Lino */}
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/productDetail" element={<ProductDetails />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Box>
     </>

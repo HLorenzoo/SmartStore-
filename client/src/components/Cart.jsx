@@ -9,18 +9,10 @@ import "../spinner.css";
 
 const Cart = () => {
   const { carrito } = useSelector((state) => state.user);
-  // console.log(carrito.length)
+  console.log(carrito);
 
   const [totalPrice, setTotalPrice] = useState(fakeData);
 
-  // if (!carrito) {
-  //   return (
-  //     <div class="spinner">
-  //       <div class="double-bounce1"></div>
-  //       <div class="double-bounce2"></div>
-  //     </div>
-  //   );
-  // }
   return (
     <Container>
       {/* // Titulo del carrito */}
@@ -84,7 +76,7 @@ const Cart = () => {
             return <Product2 producto={producto} />
           }) : <p>prueba carrito</p>} */}
 
-          {fakeData.map((producto) => {
+          {carrito?.map((producto) => {
             return <Product2 producto={producto} />;
           })}
         </Grid>

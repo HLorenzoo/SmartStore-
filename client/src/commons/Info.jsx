@@ -3,21 +3,14 @@ import React from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useLocation } from "react-router";
 import axios from "axios";
-import { useSelector } from "react-redux";
-
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../state/login";
 const Info = ({ producto }) => {
-
   const [value, setValue] = React.useState(2);
-  const {_id} = useSelector((state) => state.user)
-console.log(producto)
+  const { _id } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const url = useLocation().pathname.split("/products/")[1];
-  const clickHandle = () => {
-    axios.post(`/api/user/carrito/${_id}`,  {carrito:producto})
-    .catch(err => console.log("este es el error", err.message))
-  };
 
   return (
     <Grid container direction="column" sx={{ height: "100%" }}>
@@ -38,7 +31,7 @@ console.log(producto)
       <Button
         variant="contained"
         color="primary"
-        onClick={() => clickHandle()}
+        onClick={() => dispatch(addToCart(producto))}
         style={{ marginTop: "auto" }}
         endIcon={<AddShoppingCartIcon />}
       >

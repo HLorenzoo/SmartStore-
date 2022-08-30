@@ -41,13 +41,12 @@ class UserService {
       const user = await User.findByIdAndUpdate(
         id,
         {
-          $push: {
+          $addToSet: {
             carrito: carrito,
           },
         },
         { new: true }
       );
-      console.log(user)
       return user
     } catch (error) {
       console.error("error existente en addToCart- SERVICE", error.message);

@@ -1,4 +1,8 @@
-import { createReducer, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createReducer,
+  createAsyncThunk,
+  createAction,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 
 //actions
@@ -11,7 +15,11 @@ export const logIn = createAsyncThunk("LOG_IN", async (user) => {
   return res.data;
 });
 export const sendMe = createAsyncThunk("ME_TOKENJWT", async () => {
-  return (await axios.get("/api/auth/me")).data;
+  const { data } = await axios.get("/api/auth/me");
+
+  const res = await axios.get(`/api/user/${data._id}`);
+
+  return res.data;
 });
 export const logOut = createAsyncThunk("LOG_OUT", async () => {
   return (await axios.post("/api/auth/logout")).data;
@@ -22,12 +30,20 @@ export const addFav = createAsyncThunk("ADD_FAV", async (producto, thunk) => {
     favoritos: producto,
   }).data;
 });
-
+export const addToCart = createAsyncThunk(
+  "ADD_PRODUCT_TO_CART",
+  async (producto, thunk) => {
+    const { user } = thunk.getState();
+    return (await axios.post(`/api/user/carrito/${user._id}`, { carrito: producto }))
+      .data;
+  }
+);
 //reducer
 const loginReducer = createReducer([], {
   [signUp.fulfilled]: (state, action) => action.payload,
   [logIn.fulfilled]: (state, action) => action.payload,
   [sendMe.fulfilled]: (state, action) => action.payload,
   [logOut.fulfilled]: (state, action) => action.payload,
+  [addToCart.fulfilled]: (state, action) => action.payload,
 });
 export default loginReducer;

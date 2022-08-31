@@ -39,6 +39,7 @@ const ProductsGrill = () => {
               sm={6}
               md={4}
               className="animate__animated animate__fadeInUp animate__slow"
+              sx={{minHeight:"800px"}}
             >
               <Card
                 sx={{

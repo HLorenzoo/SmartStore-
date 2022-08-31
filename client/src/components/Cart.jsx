@@ -9,7 +9,7 @@ import "../spinner.css";
 
 const Cart = () => {
   const { carrito } = useSelector((state) => state.user);
-  console.log(carrito);
+  console.log("ESTE ES MI CARRITO", carrito);
 
   const [totalPrice, setTotalPrice] = useState(fakeData);
 

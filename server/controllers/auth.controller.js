@@ -18,6 +18,7 @@ class AuthController {
             provincia: user.provincia,
             direccion: user.direccion,
             ordenes: user.ordenes,
+            carrito: user.carrito,
           },
           process.env.SECRET,
           { expiresIn: "5d" }
@@ -37,11 +38,11 @@ class AuthController {
   static async signIn(req, res) {
     const user = await User.findOne({ email: req.body.email });
     if (!user) return res.sendStatus(401);
-    const { _id, username, email, password, salt, favorites } = user;
+    const { _id, username, email, password, salt, favoritos, carrito } = user;
     const passwordHash = bcrypt.hashSync(req.body.password, salt);
     if (passwordHash !== password) return res.sendStatus(401);
     if (passwordHash === password) {
-      const token = jwt.sign({ _id, username, email }, process.env.SECRET, {
+      const token = jwt.sign({ _id, username, email,favoritos, carrito }, process.env.SECRET, {
         expiresIn: "5d",
       });
       const payload = jwt.verify(token, process.env.SECRET);

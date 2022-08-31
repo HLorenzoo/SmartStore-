@@ -34,17 +34,23 @@ class UserService {
       console.error("error existente en addProduct- SERVICE", error.message);
     }
   }
-  static async addToCart(id, producto) {
+
+
+  static async addToCart(id, carrito) {
     try {
-      return await User.findByIdAndUpdate(
+      const user = await User.findByIdAndUpdate(
         id,
         {
-          $push: {
-            carrito: producto,
+          $addToSet: {
+            carrito: carrito,
+
           },
         },
         { new: true }
       );
+
+      return user;
+
     } catch (error) {
       console.error("error existente en addToCart- SERVICE", error.message);
     }
@@ -55,7 +61,10 @@ class UserService {
         _id,
         {
           $pull: {
-            carrito: { id: producto.id },
+
+
+            carrito: { _id: producto._id },
+
           },
         },
         { new: true }

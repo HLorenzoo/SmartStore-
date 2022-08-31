@@ -25,13 +25,6 @@ const ProductsGrill = () => {
   return (
     <>
       <main>
-        {/* <Box
-          sx={{
-            bgcolor: "#F4F5F7",
-            pb: 6,
-          }}
-        ></Box> */}
-
         <Grid
           container
           spacing={4}

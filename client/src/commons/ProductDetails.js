@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 
 import React, { useEffect, useState } from "react";
-import "../style.css";
+import "../spinner.css";
 import { fakeData } from "../components/fakeData";
 
 import Reviews from "./Reviews";
@@ -56,7 +56,7 @@ const ProductDetails = () => {
         paddingTop="100px"
         sx={{ maxWidth: 1100, margin: "0 auto" }}
       >
-        <Grid item sm={1}>
+        <Grid item sm={1} className="animate__fadeInTopLeft">
           <ImageGrid
             images={product.image}
             onSelect={setSelectedImage}
@@ -69,7 +69,7 @@ const ProductDetails = () => {
         </Grid>
 
         <Grid item sm={6}>
-          <Info {...product} />
+          <Info producto={product} />
         </Grid>
       </Grid>
       <Divider sx={{ paddingBottom: "30px " }} />

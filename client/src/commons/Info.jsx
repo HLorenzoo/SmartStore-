@@ -1,12 +1,14 @@
 import { Divider, Grid, Typography, Button, Box, Rating } from "@mui/material";
 import React from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useSelector } from "react-redux";
 
 const Info = ({ name, description, price, category }) => {
   const [value, setValue] = React.useState(2);
-
+  const { _id } = useSelector((state) => state.user);
+  console.log(_id, "id");
   const clickHandle = () => {
-    // axios.post("rutaCarrito", {id: product.id})
+    axios.post(`api/carrito/${_id}`, { _id });
     console.log("hola");
   };
 

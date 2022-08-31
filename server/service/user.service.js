@@ -34,6 +34,37 @@ class UserService {
       console.error("error existente en addProduct- SERVICE", error.message);
     }
   }
+  static async addToCart(id, producto) {
+    try {
+      return await User.findByIdAndUpdate(
+        id,
+        {
+          $push: {
+            carrito: producto,
+          },
+        },
+        { new: true }
+      );
+    } catch (error) {
+      console.error("error existente en addToCart- SERVICE", error.message);
+    }
+  }
+  static async deleteCart(_id, producto) {
+    try {
+      const user = await User.findByIdAndUpdate(
+        _id,
+        {
+          $pull: {
+            carrito: { id: producto.id },
+          },
+        },
+        { new: true }
+      );
+      return user;
+    } catch (error) {
+      console.error({ error });
+    }
+  }
   static async deleteUser(id) {
     try {
       return await User.findByIdAndUpdate(
@@ -58,6 +89,22 @@ class UserService {
       );
     } catch (error) {
       console.error("error existente en addFav- SERVICE", error.message);
+    }
+  }
+  static async deleteFav(_id, favorites) {
+    try {
+      const user = await User.findByIdAndUpdate(
+        _id,
+        {
+          $pull: {
+            favorites: { id: favorites.id },
+          },
+        },
+        { new: true }
+      );
+      return user;
+    } catch (error) {
+      console.error({ error });
     }
   }
   static async addAdmin(id) {

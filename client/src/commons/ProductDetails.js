@@ -51,12 +51,13 @@ const ProductDetails = () => {
   return (
     <div>
       <Grid
+        className="animate__animated animate__backInDown"
         container
         spacing={1}
         paddingTop="100px"
         sx={{ maxWidth: 1100, margin: "0 auto" }}
       >
-        <Grid item sm={1} className="animate__fadeInTopLeft">
+        <Grid item sm={1}>
           <ImageGrid
             images={product.image}
             onSelect={setSelectedImage}

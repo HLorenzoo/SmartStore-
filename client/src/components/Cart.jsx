@@ -9,9 +9,21 @@ import "../spinner.css";
 
 const Cart = () => {
   const { carrito } = useSelector((state) => state.user);
-  console.log("ESTE ES MI CARRITO", carrito);
 
-  const [totalPrice, setTotalPrice] = useState(fakeData);
+  const nuevoCarrito = carrito ? JSON.parse(JSON.stringify(carrito)) : {}
+
+  nuevoCarrito?.forEach((producto) => {
+    producto["cantidad"] = 1
+  })
+
+  const orders = {}
+
+  carrito?.forEach((order) => {
+    orders[order.name] = order.price
+  })
+
+
+
 
   return (
     <Container>
@@ -28,7 +40,7 @@ const Cart = () => {
               paddingY={4}
             >
               <Typography variant="h5" sx={{ fontWeight: 500 }}>
-                Shopping Cart ()
+                Shopping Cart ({})
               </Typography>
             </Box>
           </Paper>
@@ -52,7 +64,7 @@ const Cart = () => {
                   Total
                 </Typography>
                 <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                  $ 65
+                  {"debe cambiar"}
                 </Typography>
               </Box>
 
@@ -76,7 +88,7 @@ const Cart = () => {
             return <Product2 producto={producto} />
           }) : <p>prueba carrito</p>} */}
 
-          {carrito?.map((producto) => {
+          {nuevoCarrito?.map((producto) => {
             return <Product2 producto={producto} />;
           })}
         </Grid>

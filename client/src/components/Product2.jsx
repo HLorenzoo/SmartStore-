@@ -18,29 +18,31 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { fakeData } from "./fakeData";
 import { useDispatch } from "react-redux";
 import { deleteFromCart } from "../state/login";
-const Product2 = ({ producto, seteo }) => {
+
+const Product2 = ({ producto }) => {
+
+
   // Estados
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(1);
+  // const [quantity, setQuantity] = useState(1);
 
-  const [quantities, setQuantities] = useState([]);
+  const [quantitie, setQuantitie] = useState(1);
 
   const handleChange = (event) => {
-    setQuantity(event.target.value);
+
+    producto.cantidad = event.target.value
+    // console.log(event.target.value)
+    setQuantitie(event.target.value)
+    // console.log(producto)
   };
 
-  const totalPrice = () => {
-    producto.forEach((obj) => {
-      quantities.concat(obj.price);
-    });
-  };
 
   // para definir cantidades
   const arrCantidades = Array.from(
     { length: producto.cantidad },
     (_, i) => i + 1
   );
-  console.log(producto);
+  // console.log(producto);
   const arrCant = [1, 2, 3, 4, 5];
 
   return (
@@ -51,7 +53,7 @@ const Product2 = ({ producto, seteo }) => {
             {producto.name}
           </Typography>
           <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-            $us. {producto.price}
+            $ {producto.price}
           </Typography>
           <Typography variant="subtitle1" paragraph>
             {producto.description.slice(0, 80)}...
@@ -69,7 +71,7 @@ const Product2 = ({ producto, seteo }) => {
 
             <FormControl sx={{ minWidth: 70, marginLeft: 5, size: "small" }}>
               <InputLabel>Cantidad</InputLabel>
-              <Select label="Cantidad" onChange={handleChange} value={quantity}>
+              <Select label="Cantidad" onChange={handleChange} value={quantitie}>
                 {/*  {arrCantidades.map((n) => {
                   return <MenuItem value={n}>{n}</MenuItem>;
                 })} */}

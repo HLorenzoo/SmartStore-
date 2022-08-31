@@ -3,10 +3,17 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 class UserController {
+  static async createUser(req, res, next) {
+    try {
+        const user = await UserService.createUser(req.body);
+        res.status(201).send(user);
+    } catch (error) {
+        next();
+    }
+  }
   static async getAllUser(req, res, next) {
     try {
       const users = await UserService.getAllUser();
-
       users && res.status(200).send(users);
       users || res.sendStatus(404);
     } catch (error) {
@@ -18,7 +25,6 @@ class UserController {
       const { _id } = req.params;
       const { ordenes } = req.body;
       if (ordenes) {
-        console.log(_id, ordenes);
         const userUpdated = await UserService.addProduct(_id, ordenes);
         res.status(202).send(userUpdated);
       }
@@ -30,7 +36,6 @@ class UserController {
   static async deleteUser(req, res, next) {
     try {
       const { _id } = req.params;
-      console.log(_id);
       const userUpdated = await UserService.deleteUser(_id);
       userUpdated && res.status(204).send("Usuario Eliminado!.");
     } catch (error) {
@@ -42,7 +47,6 @@ class UserController {
       const { _id } = req.params;
       const { favoritos } = req.body;
       if (favoritos) {
-        console.log(_id, favoritos);
         const userUpdated = await UserService.addFav(_id, favoritos);
         userUpdated && res.status(202).send(userUpdated);
       }
@@ -63,7 +67,6 @@ class UserController {
     try {
       const { _id } = req.params;
       const userUpdated = await UserService.deleteAdmin(_id);
-      console.log(userUpdated);
       userUpdated && res.status(200).send(userUpdated);
     } catch (error) {
       return res.status(500).json({ error: error.message });

@@ -11,10 +11,19 @@ class ProductService {
         }
     }
 
-    static async createCategory(reqbody) {
+    static async createCategory(category) {
+
+        console.log(id, category);
         try {
-            let category = new Category(reqbody);
-            return await category.save({});
+            return await Category.find(
+                {name: name},
+                {
+                    $push: {
+                        category: category,
+                    },
+                },
+                { new: true },
+            )
         } catch (error) {
             console.error("error existente en createCategory- SERVICE", error.message);
         }

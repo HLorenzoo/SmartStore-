@@ -6,6 +6,7 @@ const { verifyTokenAdmin } = require("../middelware/auth.middelware");
 router.get("/:_id", UserController.findOneUser);
 
 //POST
+router.post("/", UserController.createUser);
 router.post("/ordenes/:_id", UserController.addProduct);
 router.post("/favoritos/:_id", UserController.addFav);
 

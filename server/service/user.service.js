@@ -8,7 +8,7 @@ class UserService {
       console.error("error existente en createUser- SERVICE", error.message);
     }
   }
-  static async getAllUser(reqbody) {
+  static async getAllUser() {
     try {
       let user = await User.find(
         { userStatus: true },
@@ -28,7 +28,7 @@ class UserService {
             ordenes: ordenes,
           },
         },
-        { new: true }
+        { new: true },
       );
     } catch (error) {
       console.error("error existente en addProduct- SERVICE", error.message);
@@ -39,7 +39,7 @@ class UserService {
       return await User.findByIdAndUpdate(
         id,
         { userStatus: false },
-        { new: true }
+        { new: true },
       );
     } catch (error) {
       console.error("error existente en deleteUser- SERVICE", error.message);
@@ -54,7 +54,7 @@ class UserService {
             favoritos,
           },
         },
-        { new: true }
+        { new: true },
       );
     } catch (error) {
       console.error("error existente en addFav- SERVICE", error.message);

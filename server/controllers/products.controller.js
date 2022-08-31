@@ -14,8 +14,10 @@ class ProductController {
 
   static async createCategory(req, res, next) {
     try {
-      const category = await ProductService.createCategory(req.body);
-      res.status(201).send(category);
+      //const { name } = req.params;
+      const { category } = req.body;
+      const cat = await ProductService.createCategory(category);
+      res.status(201).send(cat);
     } catch (error) {
       return res.status(500).json({ error });
     }

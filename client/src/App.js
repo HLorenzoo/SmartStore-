@@ -16,6 +16,7 @@ import { getAll } from "./state/products";
 import Cart from "./components/Cart"
 import Product2 from "./components/Product2";
 import Checkout from "./components/Checkout";
+import Computers from "./category/Computers";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/productDetail" element={<ProductDetails />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/category/:name" element={<Computers />} />
         </Routes>
       </Box>
     </>

@@ -32,11 +32,13 @@ class UserController {
     try {
       const { _id } = req.params;
       const { carrito } = req.body;
+
       // if (carrito) {
         const userUpdated = await UserService.addToCart(_id, carrito);
         userUpdated && res.status(202).send(userUpdated);
       // }
       // res.sendStatus(404);
+
     } catch (error) {
       return res.status(500).json({ error });
     }

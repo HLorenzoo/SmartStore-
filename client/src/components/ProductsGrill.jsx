@@ -7,7 +7,6 @@ import {
   CardContent,
   Card,
   Button,
-  Pagination,
 } from "@mui/material";
 import "animate.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -97,15 +96,6 @@ const ProductsGrill = () => {
         </Grid>
         {/* </Container> */}
       </main>
-      <Pagination
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          marginLeft: "45px",
-        }}
-        count={3}
-      />
     </>
   );
 };

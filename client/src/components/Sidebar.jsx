@@ -9,6 +9,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import GamesIcon from "@mui/icons-material/Games";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import AndroidOutlinedIcon from "@mui/icons-material/AndroidOutlined";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import {
   List,
   ListItem,
@@ -52,6 +53,7 @@ const Sidebar = () => {
         justifyContent: "flex-start",
         alignItems: "flex-start",
         spacing: 1,
+        display: "block",
       }}
     >
       <List
@@ -75,7 +77,11 @@ const Sidebar = () => {
           >
             <ListItemButton>
               <ListItemIcon>
-                <AccountCircleOutlinedIcon />
+                {user.username ? (
+                  <VerifiedUserIcon />
+                ) : (
+                  <AccountCircleOutlinedIcon />
+                )}
               </ListItemIcon>
               <StyledInputText
                 primary={user.username ? user.username : "Profile"}

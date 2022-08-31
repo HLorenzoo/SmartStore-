@@ -39,11 +39,11 @@ const ProductsGrill = () => {
               sm={6}
               md={4}
               className="animate__animated animate__fadeInUp animate__slow"
-              sx={{minHeight:"800px"}}
+              sx={{minHeight:"75vh"}}
             >
               <Card
                 sx={{
-                  height: "80%",
+                  height: "65vh",
                   display: "flex",
                   flexDirection: "column",
                   boxShadow:
@@ -65,11 +65,11 @@ const ProductsGrill = () => {
                   alt="foto de producto"
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {card.name}
+                  <Typography gutterBottom variant="h6" component="h2">
+                    {card.name.substring(0, 20)}...
                   </Typography>
                   <Typography>
-                    {`${card.description.substring(0, 130)}...`}
+                    {`${card.description.substring(0, 80)}...`}
                   </Typography>
                 </CardContent>
                 <CardActions
@@ -84,6 +84,7 @@ const ProductsGrill = () => {
                       "&:hover": {
                         backgroundColor: "#212223",
                         opacity: [0.9, 0.8, 0.7],
+                        marginBottom: "20px"
                       },
                     }}
                     variant="contained"

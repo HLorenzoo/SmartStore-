@@ -20,8 +20,6 @@ import { useDispatch } from "react-redux";
 import { deleteFromCart } from "../state/login";
 
 const Product2 = ({ producto }) => {
-
-
   // Estados
   const dispatch = useDispatch();
   // const [quantity, setQuantity] = useState(1);
@@ -29,13 +27,12 @@ const Product2 = ({ producto }) => {
   const [quantitie, setQuantitie] = useState(1);
 
   const handleChange = (event) => {
-
-    producto.cantidad = event.target.value
+    producto.cantidad = event.target.value;
+    producto.total = producto.price * producto.cantidad
     // console.log(event.target.value)
-    setQuantitie(event.target.value)
+    setQuantitie(event.target.value);
     // console.log(producto)
   };
-
 
   // para definir cantidades
   const arrCantidades = Array.from(
@@ -71,7 +68,11 @@ const Product2 = ({ producto }) => {
 
             <FormControl sx={{ minWidth: 70, marginLeft: 5, size: "small" }}>
               <InputLabel>Cantidad</InputLabel>
-              <Select label="Cantidad" onChange={handleChange} value={quantitie}>
+              <Select
+                label="Cantidad"
+                onChange={handleChange}
+                value={quantitie}
+              >
                 {/*  {arrCantidades.map((n) => {
                   return <MenuItem value={n}>{n}</MenuItem>;
                 })} */}
@@ -80,6 +81,9 @@ const Product2 = ({ producto }) => {
                 ))}
               </Select>
             </FormControl>
+            <Typography variant="body2">
+              Total: ${producto.price * producto.cantidad}
+            </Typography>
           </Box>
         </CardContent>
         <CardMedia

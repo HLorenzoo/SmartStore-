@@ -1,5 +1,5 @@
 import { Container, Grid, Paper, Typography, Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Product2 from "./Product2";
 import { Link } from "react-router-dom";
 import Checkout from "../commons/Checkout";
@@ -10,20 +10,38 @@ import "../spinner.css";
 const Cart = () => {
   const { carrito } = useSelector((state) => state.user);
 
-  const nuevoCarrito = carrito ? JSON.parse(JSON.stringify(carrito)) : {}
+  const nuevoCarrito = carrito ? JSON.parse(JSON.stringify(carrito)) : {};
 
   nuevoCarrito?.forEach((producto) => {
-    producto["cantidad"] = 1
-  })
+    producto["cantidad"] = 1;
+    producto["total"] = 1
+  });
 
-  const orders = {}
+  const orders = {};
 
   carrito?.forEach((order) => {
-    orders[order.name] = order.price
-  })
+    orders[order.name] = order.price;
+  });
 
+  console.log(nuevoCarrito);
+  // de cada uno multiplico price * cantidad, luego lo sumo
 
+  const precios = [];
 
+  useEffect(() => {
+    nuevoCarrito?.forEach((producto) => {
+      let mult = producto.price * producto.cantidad;
+      precios.push(mult);
+    })
+  });
+
+  // useEffect(() => {
+  //   console.log(nuevoCarrito)
+  // })
+
+  const precioFinal = 0;
+
+  console.log(precios);
 
   return (
     <Container>

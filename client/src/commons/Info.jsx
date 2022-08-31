@@ -1,16 +1,6 @@
 import { Divider, Grid, Typography, Button, Box, Rating } from "@mui/material";
 import React from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useLocation } from "react-router";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../state/login";
-const Info = ({ producto }) => {
-  const [value, setValue] = React.useState(2);
-  const { _id } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-
-  const url = useLocation().pathname.split("/products/")[1];
 
   return (
     <Grid container direction="column" sx={{ height: "100%" }}>

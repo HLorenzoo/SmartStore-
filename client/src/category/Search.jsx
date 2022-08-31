@@ -18,15 +18,12 @@ import { getOne } from "../state/products";
 import { useNavigate } from "react-router";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-const Category = () => {
+const Search = () => {
   const url = useLocation().pathname.split("category/")[1];
-  const [products, setProducts] = useState([]);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios.get(`/api/products/cat/${url}`).then((res) => setProducts(res.data));
-  }, [url]);
+  const products = useSelector((state) => state.searchProduct);
 
   const handleClick = (product) => {
     dispatch(getOne(product)).then(() => navigate(`/products/${product._id}`));
@@ -52,11 +49,10 @@ const Category = () => {
         <Typography
           variant="h2"
           color="initial"
-          sx={{ textAling: "center", color: "#CDD0D4" ,}}
+          sx={{ textAling: "center", color: "#CDD0D4" }}
         >
-          {url}
+          {"Resultados de tu búsqueda:"}
         </Typography>
-        <ShoppingCartIcon fontSize="large" sx={{ color: "#CDD0D4" }} />
       </Box>
       <Grid container spacing={4} sx={{ p: 8, ml: "250px", maxWidth: "85vw" }}>
         {products?.map((card) => (
@@ -127,4 +123,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default Search;

@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../spinner.css";
 import Sidebar from "./Sidebar";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -28,6 +28,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // import DeleteIcon from "@mui/icons-material/Delete";
 
 import { useSelector } from "react-redux";
+import Favorites from "../category/Favorites";
 // import { useState } from "react";
 const StyledIcon = styled(ListItemIcon)(({ theme }) => ({
   position: "relative",
@@ -44,18 +45,20 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 
 const Perfil = () => {
   const user = useSelector((state) => state.user);
-
+  if (!user.username)
+    return (
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    );
   return (
     <Box
       height="100vh"
       display="flex"
-
-      // flexDirection="column"
     >
       <Sidebar />
-      {/* <Typography variant="h1" color="initial">
-        column
-      </Typography> */}
+
       <Box width="100%" pl="250px" pt="30px">
         <CardMedia
           className="animate__animated animate__fadeInDown "
@@ -66,16 +69,19 @@ const Perfil = () => {
           alt="green iguana"
         />{" "}
         <Box
+          className="animate__animated animate__fadeInUp "
           display="flex"
           flexDirection="row"
           alignItems="center"
           justifyContent="center"
         >
           <Box
+            className="animate__animated animate__fadeInUp "
             display="flex"
             alignItems="center"
             padding="2px"
             borderRadius="15px"
+            pt={10}
           >
             <AccountCircleIcon sx={{ fontSize: 80, color: "grey" }} />
 
@@ -84,7 +90,12 @@ const Perfil = () => {
             </Typography>
           </Box>
         </Box>
-        <Box display="flex" justifyContent="center">
+        <Box
+          display="flex"
+          justifyContent="center"
+          className="animate__animated animate__fadeInUp "
+          pt={10}
+        >
           <Paper
             sx={{
               width: "40vw",
@@ -104,7 +115,7 @@ const Perfil = () => {
                 <ListItemText
                   sx={{ textAlign: "center" }}
                   primary="Dirección:"
-                  secondary={"Bermudez 2808"}
+                  secondary={user.direccion}
                 ></ListItemText>
               </ListItem>
               <Divider />
@@ -112,12 +123,13 @@ const Perfil = () => {
                 <ListItemText
                   sx={{ textAlign: "center" }}
                   primary="Teléfono:"
-                  secondary={"1532860515"}
+                  secondary={user.tel}
                 ></ListItemText>
               </ListItem>
             </List>
           </Paper>
         </Box>
+          {/* <Favorites/> */}
       </Box>
     </Box>
   );

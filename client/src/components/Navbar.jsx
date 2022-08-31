@@ -23,7 +23,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../state/login";
 import "animate.css";
-
+import { searchProduct } from "../state/products";
 const StyledToolBar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
   backgroundColor: "#212223",
@@ -77,7 +77,8 @@ const Navbar = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log("click");
+    e.preventDefault();
+    dispatch(searchProduct(input)).then(() => navigate("/search"));
   };
 
   const handleLogOut = () => {
@@ -174,8 +175,12 @@ const Navbar = () => {
           >
             <MenuItem>
               <AccountCircleOutlinedIcon sx={{ fontSize: 30 }} />
-              <Link to="/user" style={{ textDecoration: "none", color: "" }}>
-                <Typography variant="h5" color="black">
+              <Link to="/profile" style={{ textDecoration: "none", color: "" }}>
+                <Typography
+                  variant="h5"
+                  color="black"
+                  onClick={() => setOpen(!open)}
+                >
                   {user.username}
                 </Typography>
               </Link>

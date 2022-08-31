@@ -11,8 +11,21 @@ export const getOne = createAsyncThunk("GET_ONE", async (product) => {
   return res.data;
 });
 
+export const searchProduct = createAsyncThunk(
+  "GET_ONE_PRODUCT_BY_SEARCH",
+  async (name) => {
+    const res = await axios.get(`/api/products/name/${name}`);
+
+    return res.data;
+  }
+);
+
 const productsReducer = createReducer([], {
   [getAll.fulfilled]: (state, action) => action.payload,
+});
+
+export const searchReducer = createReducer([], {
+  [searchProduct.fulfilled]: (state, action) => action.payload,
 });
 
 export const oneProductsReducer = createReducer([], {

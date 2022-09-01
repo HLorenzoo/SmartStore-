@@ -21,7 +21,7 @@ class OrderService {
         }
     }
 
-///-- RUTA NORMAL SIN INTREGAR CON addToUser() --///
+///-- RUTA createOrder SIN INTREGAR CON addToUser() --///
 /*     static async createOrder(userId, reqbody) { //Ok
         try {
             const order = new Order(reqbody);
@@ -55,7 +55,7 @@ class OrderService {
         }
     } */
 
-///-- RUTA NORMAL SIN INTREGAR CON createOrder() --///
+///-- RUTA confirmPayment SIN INTREGAR CON createOrder() --///
 /*     static async addToUser(userId, orderId) {
         try {
             return await User.findOneAndUpdate(

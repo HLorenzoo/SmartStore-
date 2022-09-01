@@ -33,7 +33,7 @@ class OrderController {
         }
     } */
 
-    static async addToUser(req, res, next) {
+/*     static async addToUser(req, res, next) {
         try {
             const { _id } = req.params;
             const { orderId } = req.body;
@@ -42,7 +42,7 @@ class OrderController {
         } catch (error) {
             return res.status(500).json({ error });   
         }
-    }
+    } */
 }
 
 module.exports = OrderController;

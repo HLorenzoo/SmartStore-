@@ -2,7 +2,7 @@ const Order = require("../models/Order");
 const User = require("../models/User");
 
 class OrderService {
-    static async createOrder(userId, reqbody) { //Ok
+    static async createOrder(reqbody) { //Ok
         try {
             const order = new Order(reqbody);
             return await order.save({});

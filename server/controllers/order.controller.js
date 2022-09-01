@@ -4,10 +4,9 @@ const bcrypt = require("bcrypt");
 
 class OrderController {
     static async createOrder(req, res, next) {
-        console.log(req.body); //acá debería llegar el objeto del Cart
+        console.log(req.body);
         try {
-            const { _id } = req.params;
-            const newOrder = await OrderService.createOrder(_id, req.body);
+            const newOrder = await OrderService.createOrder(req.body);
             res.status(201).send(newOrder); 
         } catch (error) {
             return res.status(500).json({ error });

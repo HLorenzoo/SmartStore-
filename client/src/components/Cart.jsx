@@ -166,7 +166,7 @@ const Cart = () => {
                               >
                                 <ListItemText
                                   primary={product.name}
-                                  secondary={product.description.substring(0, 120) + "..."}
+                                  secondary={product.description?.substring(0, 120) + "..."}
                                 />
                                 <Typography variant="body2">
                                   {product.price}

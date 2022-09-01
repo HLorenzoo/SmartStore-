@@ -17,8 +17,9 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import { fakeData } from "./fakeData";
 import { useDispatch } from "react-redux";
-import { deleteFromCart } from "../state/login";
-
+import { addToCart, deleteFromCart, realDeleteFromCart } from "../state/login";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 const Product2 = ({ producto }) => {
   // Estados
   const dispatch = useDispatch();
@@ -26,21 +27,13 @@ const Product2 = ({ producto }) => {
 
   const [quantitie, setQuantitie] = useState(1);
 
-  const handleChange = (event) => {
-    // producto.amount = event.target.value;
-    // producto.total = producto.price * producto.amount
-    // console.log(event.target.value)
-    setQuantitie(event.target.value);
-    // console.log(producto)
+  const handleAdd = (event) => {
+    dispatch(addToCart({ ...producto, amount: producto.amount + 1 }));
   };
 
-  // para definir cantidades
-  const arrCantidades = Array.from(
-    { length: producto.cantidad },
-    (_, i) => i + 1
-  );
-  // console.log(producto);
-  const arrCant = [1, 2, 3, 4, 5];
+  const handleDelete = (event) => {
+    dispatch(deleteFromCart({ ...producto, amount: producto.amount - 1 }));
+  };
 
   return (
     <Grid item xs={12} md={8} sx={{ marginBottom: 5 }}>
@@ -53,34 +46,44 @@ const Product2 = ({ producto }) => {
             $ {producto.price}
           </Typography>
           <Typography variant="subtitle1" paragraph>
-            {producto.description.slice(0, 80)}...
+            {producto.description?.slice(0, 80)}...
           </Typography>
 
           <Box sx={{ display: "flex" }}>
             <Button
-              onClick={() => dispatch(deleteFromCart(producto))}
+              onClick={() => dispatch(realDeleteFromCart(producto))}
               variant="contained"
               color="warning"
               endIcon={<DeleteIcon />}
             >
               Quitar
             </Button>
-
+            {/* 
             <FormControl sx={{ minWidth: 70, marginLeft: 5, size: "small" }}>
               <InputLabel>Cantidad</InputLabel>
-              <Select
-                label="Cantidad"
-                onChange={handleChange}
-                value={quantitie}
-              >
-                {/*  {arrCantidades.map((n) => {
-                  return <MenuItem value={n}>{n}</MenuItem>;
-                })} */}
+              <Select label="Cantidad">
                 {arrCant.map((n) => (
-                  <MenuItem value={n}>{n}</MenuItem>
+                  <MenuItem onClick={handleChange} value={n}>
+                    {n}
+                  </MenuItem>
                 ))}
               </Select>
-            </FormControl>
+            </FormControl> */}
+            <Box
+              display="flex"
+              p={2}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <RemoveIcon
+                sx={{ cursor: "pointer" }}
+                onClick={() => handleDelete()}
+              />
+              <Box sx={{ fontSize: "24px", margin: "5px" }}>
+                {producto.amount > 0 ? producto.amount : "1"}
+              </Box>
+              <AddIcon sx={{ cursor: "pointer" }} onClick={() => handleAdd()} />
+            </Box>
             <Typography variant="body2">
               Total: ${producto.price * quantitie}
             </Typography>

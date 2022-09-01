@@ -32,8 +32,8 @@ const Info = ({ producto }) => {
         variant="contained"
         color="primary"
         onClick={() => {
-            producto.amount = 1
-          dispatch(addToCart(producto))}}
+          dispatch(addToCart({ ...producto, amount: 1 }));
+        }}
         style={{ marginTop: "auto" }}
         endIcon={<AddShoppingCartIcon />}
       >

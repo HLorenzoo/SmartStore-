@@ -31,10 +31,11 @@ class UserController {
   static async addToCart(req, res, next) {
     try {
       const { _id } = req.params;
-      const { carrito } = req.body;
+      const { carrito, amount } = req.body;
+      console.log(req.body);
       // if (carrito) {
-        const userUpdated = await UserService.addToCart(_id, carrito);
-        userUpdated && res.status(202).send(userUpdated);
+      const userUpdated = await UserService.addToCart(_id, req.body);
+      userUpdated && res.status(202).send(userUpdated);
       // }
       // res.sendStatus(404);
     } catch (error) {
@@ -45,7 +46,16 @@ class UserController {
   static async deleteCart(req, res, next) {
     try {
       const _id = req.params._id;
-      const userUpdated = await UserService.deleteCart(_id, req.body.carrito);
+      const userUpdated = await UserService.deleteCart(_id, req.body);
+      res.status(200).send(userUpdated);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+  static async realDelete(req, res, next) {
+    try {
+      const _id = req.params._id;
+      const userUpdated = await UserService.realDelete(_id, req.body);
       res.status(200).send(userUpdated);
     } catch (error) {
       return res.status(500).json({ error: error.message });

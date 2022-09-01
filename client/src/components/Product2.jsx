@@ -27,8 +27,8 @@ const Product2 = ({ producto }) => {
   const [quantitie, setQuantitie] = useState(1);
 
   const handleChange = (event) => {
-    producto.cantidad = event.target.value;
-    producto.total = producto.price * producto.cantidad
+    // producto.amount = event.target.value;
+    // producto.total = producto.price * producto.amount
     // console.log(event.target.value)
     setQuantitie(event.target.value);
     // console.log(producto)
@@ -82,7 +82,7 @@ const Product2 = ({ producto }) => {
               </Select>
             </FormControl>
             <Typography variant="body2">
-              Total: ${producto.price * producto.cantidad}
+              Total: ${producto.price * quantitie}
             </Typography>
           </Box>
         </CardContent>

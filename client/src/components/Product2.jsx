@@ -23,14 +23,12 @@ import RemoveIcon from "@mui/icons-material/Remove";
 const Product2 = ({ producto }) => {
   // Estados
   const dispatch = useDispatch();
-  // const [quantity, setQuantity] = useState(1);
 
   const [quantitie, setQuantitie] = useState(1);
 
   const handleAdd = (event) => {
     dispatch(addToCart({ ...producto, amount: producto.amount + 1 }));
   };
-
   const handleDelete = (event) => {
     dispatch(deleteFromCart({ ...producto, amount: producto.amount - 1 }));
   };

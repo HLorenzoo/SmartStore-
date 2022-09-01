@@ -1,4 +1,5 @@
 const Product = require("../models/Products");
+const User = require("../models/User");
 
 class ProductService {
     static async createProduct(reqbody) {
@@ -10,14 +11,16 @@ class ProductService {
         }
     }
     
-    static async addReview(userId, carrito) { //Ok
+    static async addReview(userId, reqbody) { //Ok
         try {
-          return await Product.findOneAndUpdate(
-            carrito._id, //Id del Producto
+          return await Product.findByIdAndUpdate(
+            reqbody._id, //Id del Producto
             {
               $addToSet: {
-                reviews: { userId: userId}, 
-                reviews: { commentReview: carrito.commentReview }, 
+                reviews: {
+                    userId: userId, 
+                    commentReview: reqbody.commentReview, 
+                }, 
               }
             }
           )
@@ -26,14 +29,16 @@ class ProductService {
         }
       }
 
-    static async addQualification(userId, carrito) {
+    static async addQualification(userId, reqbody) {
         try {
           return await User.findOneAndUpdate(
-            carrito._id, //Id del Producto
+            reqbody._id, //Id del Producto
             {
               $addToSet: {
-                reviews: { userId: userId}, 
-                reviews: { qualification: carrito.qualification }, 
+                reviews: { 
+                    userId: userId,
+                    qualification: reqbody.qualification, 
+                }, 
               },
             },
           );
@@ -87,7 +92,7 @@ class ProductService {
         }
     }
 
-    static async getAllCategories(req, res, next) {
+    static async getAllCategories() {
         try {
             let categories = await Product.find(
                 { unique: true },
@@ -95,6 +100,17 @@ class ProductService {
             return categories;
         } catch (error) {
             console.error("error existente en getAllProduct- SERVICE", error.message);
+        }
+    }
+
+    static async getOneProductReviews(productId) {
+        try {
+            let resenias = await Product.find(
+                {productId},
+            ).select({ reviews: 1 });
+            return resenias;
+        } catch (error) {
+            console.error("error existente en getOneProductReviews- SERVICE", error.message);
         }
     }
 

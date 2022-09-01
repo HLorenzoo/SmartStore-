@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Typography, Box, Avatar } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { signUp } from "../state/login";
 import { useNavigate } from "react-router";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "react-router-dom";

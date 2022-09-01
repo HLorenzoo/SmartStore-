@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { sendMe } from "./state/login";
 import Perfil from "./components/Perfil";
+import Comments from "./components/Comments"
+
+import EditProducts from "./components/EditProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +24,7 @@ function App() {
 
   return (
     <>
+    
       <CssBaseline />
       <Box
         sx={{
@@ -36,6 +40,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Perfil />} />
+          
         </Routes>
       </Box>
     </>

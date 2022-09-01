@@ -8,17 +8,10 @@ import Box from '@mui/material/Box';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import fakeData from './fakeDataNew'
-import axios from 'axios'
+import { Link } from "react-router-dom";
 
 const EditProducts = () => {
 
-  const[products,setProducts]=useState([])
-
-  const handlerDelete = (e) => {
-    const id='id'
-    axios.delete(`api/products/cat/${id}`)
-    console.log('se borra');
-  };
 
 
 
@@ -53,9 +46,11 @@ const EditProducts = () => {
                 key={i}
                 disableGutters
                 secondaryAction={
-                  <IconButton aria-label="comment">
-                    <EditIcon />
-                    <DeleteIcon onClick={handlerDelete} />
+                  <IconButton >
+                    <Link to="/editproduct" style={{ textDecoration: "none" }}>
+                      <EditIcon />
+                    </Link>
+                    <DeleteIcon />
                   </IconButton>
 
 

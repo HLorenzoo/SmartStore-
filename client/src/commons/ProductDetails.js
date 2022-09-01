@@ -9,6 +9,7 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
+import Comments from '..components/Comments';
 
 import React, { useState } from "react";
 
@@ -66,6 +67,7 @@ const ProductDetails = () => {
         </Grid>
       </Grid>
       <Divider sx={{ paddingBottom: "30px " }} />
+      <Comments/>
       <Reviews />
     </div>
   );

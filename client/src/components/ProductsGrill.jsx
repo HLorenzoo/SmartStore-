@@ -10,6 +10,7 @@ import {
   Card,
   Button,
 } from "@mui/material";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { fakeData } from "./fakelist";
 import "animate.css";
 
@@ -72,6 +73,18 @@ const ProductsGrill = () => {
                 <CardActions
                   sx={{ display: "flex", justifyContent: "flex-end" }}
                 >
+                  <FavoriteIcon
+                    sx={{
+                      backgroundColor: "#212223",
+                      "&:hover": {
+                        backgroundColor: "#212223",
+                        opacity: [0.9, 0.8, 0.7],
+                      },
+                    }}
+                    variant="contained"
+                    size="large"
+                  >
+                  </FavoriteIcon>
                   <Button
                     sx={{
                       backgroundColor: "#212223",

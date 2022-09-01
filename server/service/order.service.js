@@ -4,13 +4,18 @@ const User = require("../models/User");
 class OrderService {
     static async createOrder(userId, reqbody) { //Ok
         try {
-            const order = new Order(reqbody);
+            const order = new Order(reqbody); //Crear orden
             await order.save({});
-            const orderId = order._id.split("\"\"");
-            console.log(orderId);
-
-            //return await addToUser(userId, reqbody);//, orderId
-            //return await order.save({});
+            // colocar esa orden en el Array del usuario (addToUser)
+            const orderId = JSON.stringify(order._id);
+            return await User.findOneAndUpdate(
+                { userId },
+                {
+                    $addToSet: {
+                        ordenes: { orderId: orderId },
+                    },
+                },
+            );
         } catch (error) {
             console.error("error existente en createOrder- SERVICE", error.message);
         }
@@ -50,7 +55,8 @@ class OrderService {
         }
     } */
 
-    static async addToUser(userId, orderId) {
+///-- RUTA NORMAL SIN INTREGAR CON createOrder() --///
+/*     static async addToUser(userId, orderId) {
         try {
             return await User.findOneAndUpdate(
                 { userId },
@@ -63,7 +69,7 @@ class OrderService {
         } catch (error) {
             console.error("error existente en addToUser- SERVICE", error.message);
         }
-    }
+    } */
 }
 
 module.exports = OrderService;

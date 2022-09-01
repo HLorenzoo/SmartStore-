@@ -106,7 +106,7 @@ class ProductService {
     static async getOneProductReviews(productId) {
         try {
             let resenias = await Product.find(
-                {productId},
+                { productId} ,
             ).select({ reviews: 1 });
             return resenias;
         } catch (error) {

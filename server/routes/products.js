@@ -14,7 +14,6 @@ router.get("/:_id", ProductController.getProductById);
 router.get("/name/:name", ProductController.getProductByName);
 router.get("/cat/:category", ProductController.getProductByCategory);
 router.get("/cat/show", ProductController.getAllCategories);
-// GET de la review TODAS LAS REIEW DE 1 SOLO PRODUCTO
 router.get("/showReviews/:_id", ProductController.getOneProductReviews);
 
 //PUT

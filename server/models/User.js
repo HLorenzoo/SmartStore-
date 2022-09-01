@@ -40,12 +40,20 @@ const UserSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
+  carrito: {
+    type: Array,
+    default: [],
+  },
   salt: {
     type: String,
   },
   isAdmin: {
     type: Boolean,
     default: false,
+  },
+  categories: {
+    type: Array,
+    default: [],
   },
   userStatus: {
     type: Boolean,

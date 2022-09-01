@@ -5,17 +5,10 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    products: [
-        {
-            productId: {
-                type: String,
-            },
-            quantity: {
-                type: Number,
-                default: 1,
-            },
-        },
-    ],
+    products: {
+        type: Array,
+        default: [],
+    },
     date: {
         type: Date,
         default: Date.now,
@@ -23,10 +16,6 @@ const OrderSchema = new mongoose.Schema({
     orderState: {
         type: String,
         defaul: "pending",
-    },
-    totalAmount: {
-        type: Number,
-        required: true,
     },
 },
     { timestamps: true },

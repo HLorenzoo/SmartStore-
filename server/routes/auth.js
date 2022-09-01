@@ -6,14 +6,13 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { verifyToken } = require("../middelware/auth.middelware");
 
-//GET
-router.get("/me", verifyToken, (req, res) => res.send(req.user));
-
-//post
+//POST
 router.post("/signup", AuthController.register);
 router.post("/login", AuthController.signIn);
+router.post("/logout", AuthController.logOut);
 
+//GET
+//router.get("/me", verifyToken, (req, res) => res.send(req.user));
 router.get("/me", verifyToken);
 
-router.post("/logout", AuthController.logOut);
 module.exports = router;

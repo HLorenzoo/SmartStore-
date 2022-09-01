@@ -6,37 +6,25 @@ const ProductSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    description: {
-        type: String,
-        required: true,
-    },
-    rating: {
-        type: Array,
-        default: [],
-    },
-    reviews: {
-        type: Array,
-        default: [],
-    },
     image: {
         type: Array,
         default: [],
+    },
+    description: {
+        type: String,
+        required: true,
     },
     price: {
         type: Number,
         required: true,
     },
-    categories: {
+    category: {
+        type: Array,
+        required: true,
+    },
+    reviews: {
         type: Array,
         default: [],
-    },
-    marca: {
-        type: String,
-        required: true,
-    },
-    cantidad: {
-        type: Number,
-        required: true,
     },
 },
     { timestamps: true },

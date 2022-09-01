@@ -8,6 +8,21 @@ class UserService {
       console.error("error existente en createUser- SERVICE", error.message);
     }
   }
+  static async createCategory(userId, category) {
+    try {
+        return await User.findByIdAndUpdate(
+            userId,
+            {
+                $addToSet: {
+                    categories: { category },
+                },
+            },
+            { new: true },
+        );
+    } catch (error) {
+        console.error("error existente en createCategory- SERVICE", error.message);
+    }
+  }
   static async getAllUser() {
     try {
       let user = await User.find(
@@ -34,6 +49,53 @@ class UserService {
       console.error("error existente en addProduct- SERVICE", error.message);
     }
   }
+  static async addToCart(userId, productId) { //Ok -findOrCreate-
+    try {
+      const user = await User.findByIdAndUpdate(
+        userId,
+        {
+          $addToSet: {
+            carrito: { productId },
+          },
+        },
+        { new: true }
+      );
+      return user;
+    } catch (error) {
+      console.error("error existente en addToCart- SERVICE", error.message);
+    }
+  }
+  static async deleteCart(userId, productId) { //Ok
+    try {
+      const user = await User.findByIdAndUpdate(
+        userId,
+        {
+          $pull: {
+            carrito: { productId: productId },
+          },
+        },
+        { new: true }
+      );
+      console.log(user);
+      return user;
+    } catch (error) {
+      console.error({ error });
+    }
+  }
+  static async deleteCartAll(userId) { //Ok
+    try {
+      const user = await User.findByIdAndUpdate(
+        userId,
+        {
+          carrito: [],
+        },   
+        { new: true },
+      );
+      return user;
+    } catch (error) {
+      console.error({ error });
+    }
+  }
   static async deleteUser(id) {
     try {
       return await User.findByIdAndUpdate(
@@ -58,6 +120,22 @@ class UserService {
       );
     } catch (error) {
       console.error("error existente en addFav- SERVICE", error.message);
+    }
+  }
+  static async deleteFav(_id, favorites) {
+    try {
+      const user = await User.findByIdAndUpdate(
+        _id,
+        {
+          $pull: {
+            favoritos: { id: favorites.id },
+          },
+        },
+        { new: true }
+      );
+      return user;
+    } catch (error) {
+      console.error({ error });
     }
   }
   static async addAdmin(id) {
@@ -103,6 +181,30 @@ class UserService {
       );
     } catch (error) {
       console.error("error existente en deleteAdmin- SERVICE", error.message);
+    }
+  }
+  static async editCategory(id, reqbody) {
+    try {
+        return await User.findByIdAndUpdate(
+            id,
+            {
+                $set: {
+                    name: reqbody.name,
+                },
+            },
+            { new: true }
+        );
+    } catch (error) {
+        console.error("error existente en editCategory- SERVICE", error.message);
+    }
+  }
+  static async deleteCategory(id) {
+    try {
+        return await User.findByIdAndDelete(
+            id,
+        );
+    } catch (error) {
+        console.error("error existente en deleteCategory- SERVICE", error.message);
     }
   }
 }

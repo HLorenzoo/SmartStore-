@@ -1,5 +1,4 @@
 const Product = require("../models/Products");
-const Category = require("../models/Categories");
 
 class ProductService {
     static async createProduct(reqbody) {
@@ -10,30 +9,44 @@ class ProductService {
             console.error("error existente en createProduct- SERVICE", error.message);
         }
     }
-
-    static async createCategory(category) {
-
-        console.log(id, category);
+    
+    static async addReview(userId, carrito) {
         try {
-            return await Category.find(
-                {name: name},
-                {
-                    $push: {
-                        category: category,
-                    },
-                },
-                { new: true },
-            )
-        } catch (error) {
-            console.error("error existente en createCategory- SERVICE", error.message);
+          return await Product.findOneAndUpdate(
+            carrito._id, //Id del Producto
+            {
+              $addToSet: {
+                reviews: { userId: userId}, 
+                reviews: { commentReview: carrito.commentReview }, 
+              }
+            }
+          )
+        } catch (error) {   
+          console.error("error existente en addReview- SERVICE", error.message);
         }
-    }
+      }
+
+    static async addQualification(userId, carrito) {
+        try {
+          return await User.findOneAndUpdate(
+            carrito._id, //Id del Producto
+            {
+              $addToSet: {
+                reviews: { userId: userId}, 
+                reviews: { qualification: carrito.qualification }, 
+              }
+            }
+          )
+        } catch (error) {   
+          console.error("error existente en addReview- SERVICE", error.message);
+        }
+      }
 
     static async getAllProduct() {
         try {
             let product = await Product.find(
                 { unique: true },
-                { productStatus: true },
+                //{ productStatus: true },
             );
             return product;
         } catch (error) {
@@ -74,6 +87,17 @@ class ProductService {
         }
     }
 
+    static async getAllCategories(req, res, next) {
+        try {
+            let categories = await Product.find(
+                { unique: true },
+            );
+            return categories;
+        } catch (error) {
+            console.error("error existente en getAllProduct- SERVICE", error.message);
+        }
+    }
+
     static async editProduct(id, reqbody) {
         try {
             return await Product.findByIdAndUpdate(
@@ -95,22 +119,6 @@ class ProductService {
         }
     }
 
-    static async editCategory(id, reqbody) {
-        try {
-            return await Category.findByIdAndUpdate(
-                id,
-                {
-                    $set: {
-                        name: reqbody.name,
-                    },
-                },
-                { new: true }
-            );
-        } catch (error) {
-            console.error("error existente en editCategory- SERVICE", error.message);
-        }
-    }
-
     static async deleteProduct(id) {
         try {
             return await Product.findByIdAndDelete(
@@ -118,16 +126,6 @@ class ProductService {
             );
         } catch (error) {
             console.error("error existente en deleteProduct- SERVICE", error.message);
-        }
-    }
-
-    static async deleteCategory(id) {
-        try {
-            return await Category.findByIdAndDelete(
-                id,
-            );
-        } catch (error) {
-            console.error("error existente en deleteCategory- SERVICE", error.message);
         }
     }
 }

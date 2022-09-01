@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
-import { fakeData } from "./fakelist";
+import { fakeData } from "./fakeData";
 import "animate.css";
 const StyledCard = styled(CardMedia)(({ theme }) => ({
   maxWidth: "610px",

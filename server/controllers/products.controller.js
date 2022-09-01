@@ -12,14 +12,25 @@ class ProductController {
     }
   }
 
-  static async createCategory(req, res, next) {
+  static async addReview(req, res, next) {
     try {
-      //const { name } = req.params;
-      const { category } = req.body;
-      const cat = await ProductService.createCategory(category);
-      res.status(201).send(cat);
+      const { _id } = req.params._id; //Id del Usuario que realizó la compra
+      const carrito = req.body.carrito; //Carrito de Compras
+      const productReview = await UserService.addReview(_id, carrito);
+      productReview && res.status(202).send(productReview);
     } catch (error) {
-      return res.status(500).json({ error });
+      return res.status(500).json({ error: error.message});
+    }
+  }
+  
+  static async addQualification(req, res, next) {
+    try {
+      const { _id } = req.params._id; //Id del Usuario que realizó la compra
+      const carrito = req.body.carrito; //Carrito de Compras
+      const productReview = await UserService.addReview(_id, carrito);
+      productReview && res.status(202).send(productReview);
+    } catch (error) {
+      return res.status(500).json({ error: error.message});
     }
   }
 
@@ -66,23 +77,22 @@ class ProductController {
     }
   }
 
+  static async getAllCategories(req, res, next) {
+    try {
+      const categories = await ProductService.getAllCategories();
+      categories && res.status(200).send(products);
+      categories || res.sendStatus(500);
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  }
+
   static async editProduct(req, res, next) {
     try {
       const { _id } = req.params;
       const productUpdated = await ProductService.editProduct(_id, req.body);
       productUpdated && res.status(202).send(productUpdated);
       productUpdated || res.sendStatus(500);
-    } catch (error) {
-      return res.status(500).json({ error });
-    }
-  }
-
-  static async editCategory(req, res, next) {
-    try {
-      const { _id } = req.params;
-      const categoryUpdated = await ProductService.editCategory(_id, req.body);
-      categoryUpdated && res.status(202).send(categoryUpdated);
-      categoryUpdated || res.sendStatus(500);
     } catch (error) {
       return res.status(500).json({ error });
     }
@@ -97,17 +107,6 @@ class ProductController {
       return res.status(500).json({ error });
     }
   }
-
-  static async deleteCategory(req, res, next) {
-    try {
-      const { _id } = req.params;
-      console.log(_id);
-      const categoryUpdated = await ProductService.deleteCategory(_id);
-      categoryUpdated && res.status(204).send("Categoria Eliminada!"); 
-    } catch (error) {
-      return res.status(500).json({ error });
-    }
-  }
- }
-
+}
+  
 module.exports = ProductController;

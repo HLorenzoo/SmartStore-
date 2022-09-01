@@ -10,7 +10,7 @@ class ProductService {
         }
     }
     
-    static async addReview(userId, carrito) {
+    static async addReview(userId, carrito) { //Ok
         try {
           return await Product.findOneAndUpdate(
             carrito._id, //Id del Producto
@@ -34,9 +34,9 @@ class ProductService {
               $addToSet: {
                 reviews: { userId: userId}, 
                 reviews: { qualification: carrito.qualification }, 
-              }
-            }
-          )
+              },
+            },
+          );
         } catch (error) {   
           console.error("error existente en addReview- SERVICE", error.message);
         }

@@ -5,8 +5,8 @@ const { verifyToken, verifyTokenAdmin } = require("../middelware/auth.middelware
 
 //POST
 router.post("/", ProductController.createProduct);
-router.post("/review", ProductController.addReview); //ADD REVIEW
-router.post("/qualify", ProductController.addQualification) //ADD QUALIFICATION
+router.post("/review/:_id", ProductController.addReview); //agregar RESEÑA
+router.post("/qualify", ProductController.addQualification) //agregar VALORACIÓN
 
 //GET
 router.get("/", ProductController.getAllProduct);

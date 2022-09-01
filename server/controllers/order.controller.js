@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt");
 
 class OrderController {
     static async createOrder(req, res, next) {
-        console.log(req.body);
         try {
-            const newOrder = await OrderService.createOrder(req.body);
+            const { _id } = req.params;
+            const newOrder = await OrderService.createOrder(_id, req.body);
             res.status(201).send(newOrder); 
         } catch (error) {
             return res.status(500).json({ error });
@@ -23,7 +23,7 @@ class OrderController {
         }
     }
 
-    static async getOrderToEmail(req, res, next) {
+/*     static async getOrderToEmail(req, res, next) {
         try {
             const { _id } = req.params;
             const email = await OrderService.getOrderToEmail(_id);
@@ -31,13 +31,13 @@ class OrderController {
         } catch (error) {
             res.status(500).json({ error });
         }
-    }
+    } */
 
     static async addToUser(req, res, next) {
         try {
             const { _id } = req.params;
-            //const { productId } = req.body;//._id
-            const userUpdated = await OrderService.addToUser(_id);
+            const { orderId } = req.body;
+            const userUpdated = await OrderService.addToUser(_id, orderId);
             userUpdated && res.status(202).send(userUpdated);
         } catch (error) {
             return res.status(500).json({ error });   

@@ -2,20 +2,34 @@ const Order = require("../models/Order");
 const User = require("../models/User");
 
 class OrderService {
-    static async createOrder(reqbody) { //Ok
+    static async createOrder(userId, reqbody) { //Ok
+        try {
+            const order = new Order(reqbody);
+            await order.save({});
+            const orderId = order._id.split("\"\"");
+            console.log(orderId);
+
+            //return await addToUser(userId, reqbody);//, orderId
+            //return await order.save({});
+        } catch (error) {
+            console.error("error existente en createOrder- SERVICE", error.message);
+        }
+    }
+
+///-- RUTA NORMAL SIN INTREGAR CON addToUser() --///
+/*     static async createOrder(userId, reqbody) { //Ok
         try {
             const order = new Order(reqbody);
             return await order.save({});
         } catch (error) {
             console.error("error existente en createOrder- SERVICE", error.message);
         }
-    }
+    } */
 
-    static async getOdersFromUser(userId) {
+    static async getOrdersFromUser(userId) { //Ok
         try {
-            const orders = await User.find(
-                { _id: userId },
-                { ordenes },
+            const orders = await Order.find(
+                { userId },
             );
             return orders;
         } catch (error) {
@@ -23,7 +37,7 @@ class OrderService {
         }
     }
 
-    static async getOrderToEmail(userId) {
+/*     static async getOrderToEmail(userId) {
         try {
             const email = await User.find(
                 { userId },
@@ -34,25 +48,18 @@ class OrderService {
         } catch (error) {
             console.error("error existente en getOrderToEmail- SERVICE", error.message);
         }
-    }
+    } */
 
-    static async addToUser(userId) {
+    static async addToUser(userId, orderId) {
         try {
-            const order = await Order.find(
+            return await User.findOneAndUpdate(
                 { userId },
-            );
-            console.log(order);
-/*             const user = await User.findOneAndUpdate(
-                {userId},
                 {
                     $addToSet: {
-                        ordenes: { orderId: orderId._id },
+                        ordenes: { orderId: orderId },
                     },
                 },
-                { new: user },
             );
-            return user; */
-           return order;
         } catch (error) {
             console.error("error existente en addToUser- SERVICE", error.message);
         }

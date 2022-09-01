@@ -14,9 +14,9 @@ class ProductController {
 
   static async addReview(req, res, next) {
     try {
-      const { _id } = req.params._id; //Id del Usuario que realizó la compra
-      const carrito = req.body.carrito; //Carrito de Compras
-      const productReview = await UserService.addReview(_id, carrito);
+      const { _id } = req.params; //Id del Usuario que realizó la compra
+      const carrito = req.body; //Carrito de Compras
+      const productReview = await ProductService.addReview(_id, carrito);
       productReview && res.status(202).send(productReview);
     } catch (error) {
       return res.status(500).json({ error: error.message});
@@ -25,9 +25,9 @@ class ProductController {
   
   static async addQualification(req, res, next) {
     try {
-      const { _id } = req.params._id; //Id del Usuario que realizó la compra
-      const carrito = req.body.carrito; //Carrito de Compras
-      const productReview = await UserService.addReview(_id, carrito);
+      const { _id } = req.params; //Id del Usuario que realizó la compra
+      const carrito = req.body; //Carrito de Compras
+      const productReview = await ProductService.addReview(_id, carrito);
       productReview && res.status(202).send(productReview);
     } catch (error) {
       return res.status(500).json({ error: error.message});

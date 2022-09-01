@@ -22,15 +22,20 @@ import { deleteFromCart } from "../state/login";
 const Product2 = ({ producto }) => {
   // Estados
   const dispatch = useDispatch();
-  // const [quantity, setQuantity] = useState(1);
 
   const [quantitie, setQuantitie] = useState(1);
+
+  useEffect(() => {
+    console.log(producto)
+  }, [quantitie])
+
 
   const handleChange = (event) => {
     // producto.amount = event.target.value;
     // producto.total = producto.price * producto.amount
     // console.log(event.target.value)
     setQuantitie(event.target.value);
+    producto.amount = event.target.value
     // console.log(producto)
   };
 

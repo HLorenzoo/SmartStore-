@@ -72,7 +72,12 @@ const Cart = () => {
   const handleClose = () => {
     setOpen(!open);
   };
-
+  const subtotal = (car) => {
+    const total = car?.reduce((acc, producto) => {
+      return (acc += producto.price * producto.amount);
+    }, 0);
+    return total;
+  };
   return (
     <Container>
       {/* // Titulo del carrito */}
@@ -93,7 +98,7 @@ const Cart = () => {
             </Box>
           </Paper>
         </Grid>
-        {/* // proceso del checkout */}
+       
         <Grid item xs={4}>
           <Paper elevation={1}>
             <Box p={3}>
@@ -112,7 +117,7 @@ const Cart = () => {
                   Total
                 </Typography>
                 <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                  {"debe cambiar"}
+                  ${Math.floor(subtotal(carrito))}
                 </Typography>
               </Box>
 
@@ -122,26 +127,21 @@ const Cart = () => {
                   alignItems: "center",
                 }}
               >
-                {/* BOTON CHECKOUT */}
-                <Button variant="contained" onClick={handleClose}>
-                  Checkousst
-                </Button>
-
                 <Dialog onClose={handleClose} open={open}>
-                  {/* <DialogTitle>
-                    Checkout
-                  </DialogTitle> */}
                   <ThemeProvider theme={theme}>
-                    {/* <CssBaseline /> */}
                     <Container
                       component="main"
                       maxWidth="sm"
                       sx={{ mb: 4, marginTop: "10vh" }}
                     >
                       <Paper
-                      elevation={1}
+                        elevation={1}
                         variant="outlined"
-                        sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, boxShadow:"-2px 11px 18px 0px rgba(0,0,0,0.35)"}}
+                        sx={{
+                          my: { xs: 3, md: 6 },
+                          p: { xs: 2, md: 3 },
+                          boxShadow: "-2px 11px 18px 0px rgba(0,0,0,0.35)",
+                        }}
                       >
                         <Typography component="h1" variant="h4" align="center">
                           Checkout
@@ -152,21 +152,14 @@ const Cart = () => {
                             Order summary
                           </Typography>
                           <List disablePadding>
-                            {/* {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
-          </ListItem>
-        ))} */}
-
                             {carrito?.map((product, i) => (
-                              <ListItem
-                                key={i}
-                                sx={{ py: 1, px: 0 }}
-                              >
+                              <ListItem key={i} sx={{ py: 1, px: 0 }}>
                                 <ListItemText
                                   primary={product.name}
-                                  secondary={product.description?.substring(0, 120) + "..."}
+                                  secondary={
+                                    product.description?.substring(0, 120) +
+                                    "..."
+                                  }
                                 />
                                 <Typography variant="body2">
                                   {product.price}
@@ -198,9 +191,7 @@ const Cart = () => {
                                 Shipping
                               </Typography>
                               <Typography gutterBottom>John Smith</Typography>
-                              <Typography gutterBottom>
-                                {direccion}
-                              </Typography>
+                              <Typography gutterBottom>{direccion}</Typography>
                             </Grid>
                             <Grid
                               item

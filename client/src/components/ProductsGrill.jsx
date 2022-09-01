@@ -38,11 +38,10 @@ const ProductsGrill = () => {
               sm={6}
               md={4}
               className="animate__animated animate__fadeInUp animate__slow"
-              sx={{minHeight:"75vh"}}
             >
               <Card
-                sx={{
-                  height: "65vh",
+                 sx={{
+                  height: "50vh",
                   display: "flex",
                   flexDirection: "column",
                   boxShadow:
@@ -68,7 +67,7 @@ const ProductsGrill = () => {
                     {card.name.substring(0, 20)}...
                   </Typography>
                   <Typography>
-                    {`${card.description.substring(0, 80)}...`}
+                    {`${card.description.substring(0, 200)}...`}
                   </Typography>
                 </CardContent>
                 <CardActions
@@ -83,7 +82,7 @@ const ProductsGrill = () => {
                       "&:hover": {
                         backgroundColor: "#212223",
                         opacity: [0.9, 0.8, 0.7],
-                        marginBottom: "20px"
+                        /* marginBottom: "20px", */
                       },
                     }}
                     variant="contained"

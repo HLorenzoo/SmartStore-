@@ -9,6 +9,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import GamesIcon from "@mui/icons-material/Games";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import AndroidOutlinedIcon from "@mui/icons-material/AndroidOutlined";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import {
   List,
   ListItem,
@@ -52,6 +53,7 @@ const Sidebar = () => {
         justifyContent: "flex-start",
         alignItems: "flex-start",
         spacing: 1,
+        display: "block",
       }}
     >
       <List
@@ -75,7 +77,11 @@ const Sidebar = () => {
           >
             <ListItemButton>
               <ListItemIcon>
-                <AccountCircleOutlinedIcon />
+                {user.username ? (
+                  <VerifiedUserIcon />
+                ) : (
+                  <AccountCircleOutlinedIcon />
+                )}
               </ListItemIcon>
               <StyledInputText
                 primary={user.username ? user.username : "Profile"}
@@ -88,7 +94,7 @@ const Sidebar = () => {
             <ListItemIcon>
               <FavoriteBorderOutlinedIcon />
             </ListItemIcon>
-            <ListItemText primary="Favorites" />
+            <ListItemText primary="Ordenes" />
           </ListItemButton>
         </ListItem>
 
@@ -98,42 +104,75 @@ const Sidebar = () => {
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <MouseOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText sx={{ fontSize: "1px" }} primary="Computer Mouse" />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <HeadphonesOutlinedIcon />
-              </ListItemIcon>
-              <StyledInputText primary="Game Headphones" />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <SportsEsportsOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Gamepads" />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <KeyboardOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Keyboards" />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <LaptopMacOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Computers" />
-            </ListItemButton>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemIcon>
-                <GamesIcon />
-              </ListItemIcon>
-              <ListItemText primary="Games" />
-            </ListItemButton>
+            <Link
+              to="/category/Mouse"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <MouseOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText
+                  sx={{ fontSize: "1px" }}
+                  primary="Computer Mouse"
+                />
+              </ListItemButton>
+            </Link>
+            <Link
+              to="/category/Auriculares"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <HeadphonesOutlinedIcon />
+                </ListItemIcon>
+                <StyledInputText primary="Game Headphones" />
+              </ListItemButton>
+            </Link>{" "}
+            <Link
+              to="/category/Pad"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <SportsEsportsOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Gamepads" />
+              </ListItemButton>
+            </Link>{" "}
+            <Link
+              to="/category/Teclado"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <KeyboardOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Keyboards" />
+              </ListItemButton>
+            </Link>{" "}
+            <Link
+              to="/category/Notebook"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <LaptopMacOutlinedIcon />
+                </ListItemIcon>
+                <ListItemText primary="Notebooks" />
+              </ListItemButton>
+            </Link>{" "}
+            <Link
+              to="/category/Accesorios"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItemButton sx={{ pl: 4 }}>
+                <ListItemIcon>
+                  <GamesIcon />
+                </ListItemIcon>
+                <ListItemText primary="Accesorios" />
+              </ListItemButton>
+            </Link>
           </List>
         </Collapse>
         <ListItem>

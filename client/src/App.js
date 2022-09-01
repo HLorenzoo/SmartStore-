@@ -13,9 +13,11 @@ import Perfil from "./components/Perfil";
 import ProductDetails from "./commons/ProductDetails";
 import axios from "axios";
 import { getAll } from "./state/products";
-import Cart from "./components/Cart"
+import Cart from "./components/Cart";
 import Product2 from "./components/Product2";
 import Checkout from "./components/Checkout";
+import Category from "./category/Category";
+import Search from "./category/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +51,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/productDetail" element={<ProductDetails />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/category/:name" element={<Category />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </Box>
     </>

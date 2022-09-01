@@ -48,7 +48,7 @@ class ProductService {
 
   static async getProductByName(name) {
     try {
-      let product = await Product.find({ name: name });
+      let product = await Product.find({ name: { $regex: name } });
       return product;
     } catch (error) {
       console.error(
@@ -57,7 +57,6 @@ class ProductService {
       );
     }
   }
-
   static async getProductByCategory(category) {
     try {
       let product = await Product.find({ category: category });

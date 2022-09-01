@@ -31,13 +31,16 @@ class UserController {
   static async addToCart(req, res, next) {
     try {
       const { _id } = req.params;
+
       const { carrito, amount } = req.body;
       console.log(req.body);
+
       // if (carrito) {
       const userUpdated = await UserService.addToCart(_id, req.body);
       userUpdated && res.status(202).send(userUpdated);
       // }
       // res.sendStatus(404);
+
     } catch (error) {
       return res.status(500).json({ error });
     }

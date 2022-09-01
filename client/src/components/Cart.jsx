@@ -227,7 +227,12 @@ const Cart = () => {
         </Grid>
 
         {/* // tarjetas de aniadido carrito */}
-        <Grid item xs={12} sx={{ marginTop: -10 }}>
+        <Grid
+          item
+          xs={12}
+          sx={{ marginTop: -10 }}
+          className="animate__animated animate__slideInDown"
+        >
           {/* {carrito ? carrito.map((producto) => {
             return <Product2 producto={producto} />
           }) : <p>prueba carrito</p>} */}

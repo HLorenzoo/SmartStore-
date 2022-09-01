@@ -30,7 +30,9 @@ const Info = ({ producto }) => {
       <Button
         variant="contained"
         color="primary"
-        onClick={() => dispatch(addToCart(producto))}
+        onClick={() => {
+          dispatch(addToCart({ ...producto, amount: 1 }));
+        }}
         style={{ marginTop: "auto" }}
         endIcon={<AddShoppingCartIcon />}
       >

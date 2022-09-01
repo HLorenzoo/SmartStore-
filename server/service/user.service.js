@@ -1,5 +1,5 @@
 const User = require("../models/User");
-class UserService {
+class Userervice {
   static async createUser(reqbody) {
     try {
       let user = new User(reqbody);
@@ -10,10 +10,7 @@ class UserService {
   }
   static async getAllUser(reqbody) {
     try {
-      let user = await User.find(
-        { userStatus: true },
-        { password: 0, salt: 0 }
-      );
+      let user = await User.find({ Usertatus: true }, { password: 0, salt: 0 });
       return user;
     } catch (error) {
       console.error("error existente en getAllUser- SERVICE", error.message);
@@ -38,10 +35,69 @@ class UserService {
 
   static async addToCart(id, carrito) {
     try {
-      const user = await User.findByIdAndUpdate(
-        id,
+
+      const user = await User.find({
+        _id: id,
+        "carrito.name": carrito.name,
+      });
+
+      if (user.length > 0) {
+        return User.findOneAndUpdate(
+          { _id: id, "carrito.name": carrito.name },
+          { $inc: { "carrito.$.amount": 1 } },
+          { new: true }
+        );
+      } else {
+        const user = await User.findByIdAndUpdate(
+          id,
+          {
+            $addToSet: {
+              carrito,
+            },
+          },
+          { new: true }
+        );
+        return user;
+      }
+
+    } catch (error) {
+      console.error("error existente en addToCart- SERVICE", error.message);
+    }
+  }
+  static async deleteCart(_id, carrito) {
+    try {
+      const user = await User.find({
+        _id: _id,
+        "carrito.name": carrito.name,
+      });
+
+      if (user.length > 0) {
+        if (carrito.amount < 1) {
+          console.log("entre", carrito);
+          return User.findOneAndUpdate(
+            { _id: _id, "carrito.name": carrito.name },
+            { $set: { "carrito.$.amount": 1 } },
+            { new: true }
+          );
+        } else {
+          return User.findOneAndUpdate(
+            { _id: _id, "carrito.name": carrito.name },
+            { $inc: { "carrito.$.amount": -1 } },
+            { new: true }
+          );
+        }
+      }
+    } catch (error) {
+      console.error({ error });
+    }
+  }
+  static async realDelete(_id, carrito) {
+    try {
+      return await User.findByIdAndUpdate(
+        _id,
         {
-          $addToSet: {
+          $pull: {
+
             carrito: carrito,
 
           },
@@ -49,27 +105,6 @@ class UserService {
         { new: true }
       );
 
-      return user;
-
-    } catch (error) {
-      console.error("error existente en addToCart- SERVICE", error.message);
-    }
-  }
-  static async deleteCart(_id, producto) {
-    try {
-      const user = await User.findByIdAndUpdate(
-        _id,
-        {
-          $pull: {
-
-
-            carrito: { _id: producto._id },
-
-          },
-        },
-        { new: true }
-      );
-      return user;
     } catch (error) {
       console.error({ error });
     }
@@ -78,7 +113,7 @@ class UserService {
     try {
       return await User.findByIdAndUpdate(
         id,
-        { userStatus: false },
+        { Usertatus: false },
         { new: true }
       );
     } catch (error) {
@@ -163,4 +198,4 @@ class UserService {
   }
 }
 
-module.exports = UserService;
+module.exports = Userervice;

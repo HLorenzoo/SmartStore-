@@ -34,20 +34,23 @@ export const addToCart = createAsyncThunk(
   "ADD_PRODUCT_TO_CART",
   async (producto, thunk) => {
     const { user } = thunk.getState();
-    return (
-      await axios.post(`/api/user/carrito/${user._id}`, { carrito: producto })
-    ).data;
+    return (await axios.post(`/api/user/carrito/${user._id}`, producto)).data;
   }
 );
 export const deleteFromCart = createAsyncThunk(
-  "DELETE_FROM_CART",
+  "DELETE1AMOUNT_FROM_PRODUCT_CART",
   async (producto, thunk) => {
     const { user } = thunk.getState();
-    return (
-      await axios.put(`/api/user/deletecarrito/${user._id}`, {
-        carrito:  producto ,
-      })
-    ).data;
+    return (await axios.put(`/api/user/deletecarrito/${user._id}`, producto))
+      .data;
+  }
+);
+export const realDeleteFromCart = createAsyncThunk(
+  "DELETE_PRODUCT_FROM_CART",
+  async (producto, thunk) => {
+    const { user } = thunk.getState();
+    return (await axios.put(`/api/user/deleteProduct/${user._id}`, producto))
+      .data;
   }
 );
 //reducer
@@ -58,5 +61,6 @@ const loginReducer = createReducer([], {
   [logOut.fulfilled]: (state, action) => action.payload,
   [addToCart.fulfilled]: (state, action) => action.payload,
   [deleteFromCart.fulfilled]: (state, action) => action.payload,
+  [realDeleteFromCart.fulfilled]: (state, action) => action.payload,
 });
 export default loginReducer;

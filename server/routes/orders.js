@@ -10,6 +10,6 @@ router.post("/", OrderController.createOrder); //cartCheckout -Ok
 router.get("/:_id", OrderController.getOrdersFromUser); //-Ok
 
 //PUT
-router.put("/add/:_id", OrderController.addToUser); //confirmPayment = cartCheckout
+//router.put("/add/:_id", OrderController.addToUser); //confirmPayment 
 
 module.exports = router;

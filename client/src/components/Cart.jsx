@@ -1,80 +1,18 @@
-import {
-  Container,
-  Grid,
-  Paper,
-  Typography,
-  Box,
-  Button,
-  createTheme,
-  Dialog,
-  DialogTitle,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Container, Grid, Paper, Typography, Box } from "@mui/material";
+import React, { useState } from "react";
 import Product2 from "./Product2";
 import { Link } from "react-router-dom";
-// import Checkout from "../commons/Checkout";
+import Checkout from "../commons/Checkout";
 import { fakeData } from "./fakeData";
 import { useSelector } from "react-redux";
 import "../spinner.css";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-
-import { ThemeProvider } from "@mui/material/styles";
-import Review from "./Review";
-// CHECKOUT
-
-const theme = createTheme();
-
-const Checkout = () => {
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
-
-  return (
-    <ThemeProvider theme={theme}>
-      {/* <CssBaseline /> */}
-      <Container
-        component="main"
-        maxWidth="sm"
-        sx={{ mb: 4, marginTop: "10vh" }}
-      >
-        <Paper
-          variant="outlined"
-          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
-        >
-          <Typography component="h1" variant="h4" align="center">
-            Checkout
-          </Typography>
-          <Review />
-        </Paper>
-      </Container>
-    </ThemeProvider>
-  );
-};
-
-// CARRITO
-
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 const Cart = () => {
-  const { carrito, direccion } = useSelector((state) => state.user);
-
-  // convertir objeto sin referencia
-  // const nuevoCarrito = carrito ? JSON.parse(JSON.stringify(carrito)) : {};
-
-  const [open, setOpen] = useState(false);
-
-  const handleClose = () => {
-    setOpen(!open);
-  };
+  const { carrito } = useSelector((state) => state.user);
   const subtotal = (car) => {
     const total = car?.reduce((acc, producto) => {
-      return (acc += producto.price * producto.amount);
+      return (acc += Math.ceil(producto.price) * Math.ceil(producto.amount));
     }, 0);
     return total;
   };
@@ -92,20 +30,21 @@ const Cart = () => {
               paddingX={2}
               paddingY={4}
             >
+              <ShoppingCartIcon />
               <Typography variant="h5" sx={{ fontWeight: 500 }}>
-                Shopping Cart ({})
+                Carrito de compras
               </Typography>
             </Box>
           </Paper>
         </Grid>
-       
+
         <Grid item xs={4}>
           <Paper elevation={1}>
             <Box p={3}>
+              {" "}
               <Typography variant="h5" sx={{ fontWeight: 500 }}>
-                Summary
+                <ShoppingBagIcon /> Resumen de Compra
               </Typography>
-
               <Box
                 sx={{
                   display: "flex",
@@ -117,119 +56,31 @@ const Cart = () => {
                   Total
                 </Typography>
                 <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                  ${Math.floor(subtotal(carrito))}
+                  ${subtotal(carrito)}
                 </Typography>
               </Box>
-
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
                 }}
               >
-                <Dialog onClose={handleClose} open={open}>
-                  <ThemeProvider theme={theme}>
-                    <Container
-                      component="main"
-                      maxWidth="sm"
-                      sx={{ mb: 4, marginTop: "10vh" }}
-                    >
-                      <Paper
-                        elevation={1}
-                        variant="outlined"
-                        sx={{
-                          my: { xs: 3, md: 6 },
-                          p: { xs: 2, md: 3 },
-                          boxShadow: "-2px 11px 18px 0px rgba(0,0,0,0.35)",
-                        }}
-                      >
-                        <Typography component="h1" variant="h4" align="center">
-                          Checkout
-                        </Typography>
-
-                        <>
-                          <Typography variant="h6" gutterBottom>
-                            Order summary
-                          </Typography>
-                          <List disablePadding>
-                            {carrito?.map((product, i) => (
-                              <ListItem key={i} sx={{ py: 1, px: 0 }}>
-                                <ListItemText
-                                  primary={product.name}
-                                  secondary={
-                                    product.description?.substring(0, 120) +
-                                    "..."
-                                  }
-                                />
-                                <Typography variant="body2">
-                                  {product.price}
-                                </Typography>
-
-                                <Typography variant="body2">
-                                  {product.price}
-                                </Typography>
-                              </ListItem>
-                            ))}
-
-                            <ListItem sx={{ py: 1, px: 0 }}>
-                              <ListItemText primary="Total" />
-                              <Typography
-                                variant="subtitle1"
-                                sx={{ fontWeight: 700 }}
-                              >
-                                $34.06
-                              </Typography>
-                            </ListItem>
-                          </List>
-                          <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                              <Typography
-                                variant="h6"
-                                gutterBottom
-                                sx={{ mt: 2 }}
-                              >
-                                Shipping
-                              </Typography>
-                              <Typography gutterBottom>John Smith</Typography>
-                              <Typography gutterBottom>{direccion}</Typography>
-                            </Grid>
-                            <Grid
-                              item
-                              container
-                              direction="column"
-                              xs={12}
-                              sm={6}
-                            >
-                              <Button variant="contained" sx={{ mt: 3, ml: 1 }}>
-                                Pagar ahora
-                              </Button>
-                            </Grid>
-                          </Grid>
-                        </>
-
-                        {/* <Review /> */}
-                      </Paper>
-                    </Container>
-                  </ThemeProvider>
-                </Dialog>
+                <Link to="/checkout" style={{ textDecoration: "none" }}>
+                  <Checkout />
+                </Link>
               </Box>
             </Box>
           </Paper>
         </Grid>
 
         {/* // tarjetas de aniadido carrito */}
-        <Grid
-          item
-          xs={12}
-          sx={{ marginTop: -10 }}
-          className="animate__animated animate__slideInDown"
-        >
+        <Grid item xs={12} sx={{ marginTop: -10 }}>
           {/* {carrito ? carrito.map((producto) => {
             return <Product2 producto={producto} />
           }) : <p>prueba carrito</p>} */}
 
-          {carrito?.map((producto, i) => {
-            return <Product2 key={i} producto={producto} />;
+          {carrito?.map((producto) => {
+            return <Product2 producto={producto} />;
           })}
         </Grid>
       </Grid>

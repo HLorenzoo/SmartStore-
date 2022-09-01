@@ -82,8 +82,15 @@ const Product2 = ({ producto }) => {
               </Box>
               <AddIcon sx={{ cursor: "pointer" }} onClick={() => handleAdd()} />
             </Box>
-            <Typography variant="body2">
-              Total: ${producto.price * quantitie}
+            <Typography
+              variant="body1"
+              borderRadius={1}
+              p={2}
+              backgroundColor="#ed6c02"
+              height={"90%"}
+              color="white"
+            >
+              Total: ${Math.ceil(producto.price * producto.amount)}
             </Typography>
           </Box>
         </CardContent>

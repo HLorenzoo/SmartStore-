@@ -15,9 +15,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AddressForm from "./AddressForm";
 import Review from "./Review";
 import PaymentForm from "./PaymentForm";
-
-
-
+import Sidebar from "./Sidebar";
+import { Divider } from "@mui/material";
 
 const theme = createTheme();
 
@@ -35,10 +34,15 @@ const Checkout = () => {
   return (
     <ThemeProvider theme={theme}>
       {/* <CssBaseline /> */}
+      <Sidebar />
       <Container
         component="main"
         maxWidth="sm"
-        sx={{ mb: 4, marginTop: "10vh" }}
+        sx={{
+          mb: 4,
+          marginTop: "10vh",
+          boxShadow: "10px 10px 24px -7px rgba(0,0,0,0.75)",
+        }} 
       >
         <Paper
           variant="outlined"
@@ -47,6 +51,7 @@ const Checkout = () => {
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
+          <Divider />
           <Review />
         </Paper>
       </Container>

@@ -3,7 +3,7 @@ const router = express.Router();
 const OrderController = require("../controllers/order.controller");
 
 //POST
-router.post("/", OrderController.createOrder); //cartCheckout -Ok
+router.post("/:_id", OrderController.createOrder); //cartCheckout -Ok
 
 //GET
 //router.get("/email/:_id", OrderController.getOrderToEmail); //payConfirmed

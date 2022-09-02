@@ -20,9 +20,11 @@ Aplicamos todos nuestros conocimientos para que la navegabilidad sea la mejor pa
 
 - ver los detalles del producto seleccionado
 
-- colocar los productos deseados al carrito sin estar logueado y tambien logueado
+- colocar los productos deseados al carrito estando logueado.
 
 - tiene un checkout para confirmar la compra de los productos del carrito
+
+- se puede comentar los productos estando logueado
 
   
   
@@ -41,8 +43,7 @@ Este proyecto pertenece al grupo 6 denominado SmartStore desarrollado con las si
 
 - Redux
 
-Al utilizar la base de datos no relacional de Mongo db tenemos la posibilidad de tener todos nuestros datos en la nube, lo que nos da la versatilidad de poder manejarlos desde cualquier parte del mundo.
-
+Tenemos hosteada la base de datos en la nube por lo tanto en caso de querer pasarlo a producción ya se puede consumir de la misma
   
 
 Cambiamos los estados usando redux, lo que nos permite un sitio web escalable y versatil a la hora de crecer.
@@ -73,7 +74,7 @@ Para instalar las dependencias ejecutar lo siguiente dentro de cada una de las c
 Para iniciar el servidor del back y del front en cada una de las carpetas client y server ejecutar:
 `npm start`
 
-Se debe crear un archivo .em en la raiz de la carpeta server con las siguientes lineas:
+Se debe crear un archivo .env en la raiz de la carpeta server con las siguientes lineas:
 
     PORT=<puerto del servidor>
     MONGO_URL='<url servidor mongo>'

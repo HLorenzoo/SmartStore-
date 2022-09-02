@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { Box, CssBaseline } from "@mui/material";
 
@@ -16,6 +17,7 @@ import Checkout from "./components/Checkout";
 import Category from "./category/Category";
 import Search from "./category/Search";
 
+
 function App() {
   const dispatch = useDispatch();
 
@@ -25,6 +27,7 @@ function App() {
   }, []);
 
   return (
+
     <>
       <CssBaseline />
       <Box

@@ -9,7 +9,9 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import GamesIcon from "@mui/icons-material/Games";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 import AndroidOutlinedIcon from "@mui/icons-material/AndroidOutlined";
+
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+
 import {
   List,
   ListItem,
@@ -26,6 +28,7 @@ import Collapse from "@mui/material/Collapse";
 import "animate.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 
 const StyledIcon = styled(ListItemIcon)(({ theme }) => ({
   position: "relative",
@@ -45,6 +48,7 @@ const Sidebar = () => {
     setOpen(!open);
   };
 
+
   const user = useSelector((state) => state.user);
   return (
     <Stack
@@ -59,14 +63,17 @@ const Sidebar = () => {
     >
       <List
         className="animate__animated animate__fadeInLeft animate__fast"
+
         sx={{
           width: "100%",
           maxWidth: 250,
           bgcolor: "background.paper",
           position: "fixed",
+
           /* backgroundColor: "red", */
           minHeight: "100vh",
           boxShadow: "0px 10px 29px 5px rgba(0,0,0,0.58)",
+
         }}
         component="nav"
         aria-labelledby="nested-list-subheader"

@@ -15,6 +15,7 @@ import {
   MenuItem,
   Dialog,
   Typography,
+
   Badge,
 } from "@mui/material";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -24,6 +25,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../state/login";
 import "animate.css";
 import { searchProduct } from "../state/products";
+
+
 const StyledToolBar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
   backgroundColor: "#212223",
@@ -67,8 +70,10 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 }));
 
 const Navbar = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [input, setInput] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -77,6 +82,7 @@ const Navbar = () => {
   };
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
     dispatch(searchProduct(input)).then(() => navigate("/search"));
   };
@@ -105,7 +111,6 @@ const Navbar = () => {
             />
           </StyledTypography>
         </Link>
-
         <Search>
           <FormControl>
             <StyledInputBase
@@ -122,6 +127,7 @@ const Navbar = () => {
           </Icons>
         </Search>
         <Icons>
+
           <Link to="/cart" style={{ textDecoration: "none" }}>
             <IconButton
               sx={{
@@ -141,6 +147,7 @@ const Navbar = () => {
           </Link>
           <IconButton
             onClick={(e) => setOpen(!open)}
+
             sx={{
               borderRadius: 10,
               backgroundColor: "#27333D",
@@ -154,6 +161,7 @@ const Navbar = () => {
                 fontSize: 25,
                 color: "white",
               }}
+
             ></AccountCircleOutlinedIcon>
           </IconButton>
         </Icons>

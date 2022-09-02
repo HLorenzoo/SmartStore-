@@ -5,18 +5,26 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
 import { Box, Button, Divider } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "./Sidebar";
-
+import { checkOut } from "../state/login";
+import { useNavigate } from "react-router";
 export default function Review() {
-  const { carrito, username, direccion } = useSelector((state) => state.user);
+  const { carrito, username, direccion, _id } = useSelector(
+    (state) => state.user
+  );
   const subtotal = (car) => {
     const total = car?.reduce((acc, producto) => {
       return (acc += Math.ceil(producto.price) * Math.ceil(producto.amount));
     }, 0);
     return total;
   };
-  console.log(direccion);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleClick = () => {
+    dispatch(checkOut(_id)).then(() => navigate("/"));
+  };
   return (
     <Box>
       <Typography variant="h6" gutterBottom>
@@ -57,6 +65,7 @@ export default function Review() {
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Button
+            onClick={handleClick}
             variant="contained"
             color="warning"
             sx={{ mt: 3, ml: 1, "&:hover": { backgroundColor: "#B55200" } }}

@@ -5,12 +5,12 @@ const client = Sib.ApiClient.instance;
 const apiKey = client.authentications["api-key"];
 
 apiKey.apiKey =
-  "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";
+  "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";
 
 const tranEmailApi = new Sib.TransactionalEmailsApi();
 
 const sender = {
-  email: "equipo6smartstore@gmail.com",
+  email: "smartstoreteam6b@gmail.com",
 };
 
 const UserService = require("../service/user.service");
@@ -20,7 +20,7 @@ const User = require("../models/User");
 const Orders = require("../models/Orders");
 
 class OrderService {
-  static async createOrder(id, total) {
+  static async createOrder(id) {
     try {
       const carrito = await User.findById(id, { carrito: 1, _id: 0 });
       const nombre = await User.findById(id, { username: 1, _id: 0 });
@@ -31,8 +31,8 @@ class OrderService {
         {
           $set: {
             carrito: [],
-            ordenes: carrito.carrito,
           },
+          $push: { ordenes: carrito.carrito },
         },
         { new: true }
       );

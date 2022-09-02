@@ -53,6 +53,13 @@ export const realDeleteFromCart = createAsyncThunk(
       .data;
   }
 );
+
+export const checkOut = createAsyncThunk("CHECKOUT_CART", async (id) => {
+  const { data } = await axios.post(`/api/orders/${id}`, {});
+  const res = await axios.get(`/api/user/${data._id}`);
+
+  return res.data;
+});
 //reducer
 const loginReducer = createReducer([], {
   [signUp.fulfilled]: (state, action) => action.payload,
@@ -62,5 +69,6 @@ const loginReducer = createReducer([], {
   [addToCart.fulfilled]: (state, action) => action.payload,
   [deleteFromCart.fulfilled]: (state, action) => action.payload,
   [realDeleteFromCart.fulfilled]: (state, action) => action.payload,
+  [checkOut.fulfilled]: (state, action) => action.payload,
 });
 export default loginReducer;

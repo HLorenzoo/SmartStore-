@@ -17,8 +17,6 @@ import Review from "./Review";
 import PaymentForm from "./PaymentForm";
 
 
-
-
 const theme = createTheme();
 
 const Checkout = () => {

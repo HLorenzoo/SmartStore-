@@ -91,12 +91,14 @@ const Sidebar = () => {
           </Link>
         </ListItem>
         <ListItem>
-          <ListItemButton>
-            <ListItemIcon>
-              <FavoriteBorderOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Ordenes" />
-          </ListItemButton>
+          <Link to="/orders">
+            <ListItemButton>
+              <ListItemIcon>
+                <FavoriteBorderOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Ordenes" />
+            </ListItemButton>
+          </Link>
         </ListItem>
 
         <ListItemButton onClick={handleClick}>

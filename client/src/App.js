@@ -6,23 +6,18 @@ import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router";
 import Login from "./components/Login";
 import Home from "./components/Home";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { sendMe } from "./state/login";
 import Perfil from "./components/Perfil";
 import ProductDetails from "./commons/ProductDetails";
-import axios from "axios";
 import { getAll } from "./state/products";
 import Cart from "./components/Cart";
-import Product2 from "./components/Product2";
 import Checkout from "./components/Checkout";
 import Category from "./category/Category";
 import Search from "./category/Search";
 
 function App() {
   const dispatch = useDispatch();
-
-  const usuario = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(sendMe());
@@ -41,13 +36,11 @@ function App() {
       >
         <Navbar />
         <Routes>
-          ""
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Perfil />} />
           <Route path="/products/:id" element={<ProductDetails />}></Route>
-          {/* Rutas de prueba Lino */}
           <Route path="/cart" element={<Cart />} />
           <Route path="/productDetail" element={<ProductDetails />} />
           <Route path="/checkout" element={<Checkout />} />

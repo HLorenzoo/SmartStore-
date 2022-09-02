@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import "../spinner.css";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+
 const Cart = () => {
   const { carrito } = useSelector((state) => state.user);
   const subtotal = (car) => {
@@ -16,6 +17,7 @@ const Cart = () => {
     }, 0);
     return total;
   };
+
   return (
     <Container>
       {/* // Titulo del carrito */}
@@ -32,7 +34,9 @@ const Cart = () => {
             >
               <ShoppingCartIcon />
               <Typography variant="h5" sx={{ fontWeight: 500 }}>
+
                 Carrito de compras
+
               </Typography>
             </Box>
           </Paper>
@@ -56,7 +60,9 @@ const Cart = () => {
                   Total
                 </Typography>
                 <Typography variant="h6" sx={{ fontWeight: 500 }}>
+
                   ${subtotal(carrito)}
+
                 </Typography>
               </Box>
               <Box
@@ -65,7 +71,9 @@ const Cart = () => {
                   alignItems: "center",
                 }}
               >
+
                 <Link to="/checkout" style={{ textDecoration: "none" }}>
+
                   <Checkout />
                 </Link>
               </Box>

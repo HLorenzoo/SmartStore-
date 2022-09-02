@@ -1,5 +1,5 @@
 const Products = require("../models/Products");
-
+const User = require("../models/User");
 const Product = require("../models/Products");
 
 
@@ -24,6 +24,39 @@ class ProductService {
       );
     }
   } */
+
+  static async addReview(userId, reqbody) {
+    try {
+      const user = await User.findById(userId);
+      console.log(user, "userr");
+      return await Product.findByIdAndUpdate(
+        reqbody._id, //Id del Producto
+        {
+          $addToSet: {
+            reviews: {
+              userId: user.username,
+              commentReview: reqbody.commentReview,
+            },
+          },
+        }
+      );
+    } catch (error) {
+      console.error("error existente en addReview- SERVICE", error.message);
+    }
+  }
+  static async getOneProductReviews(productId) {
+    try {
+      let resenias = await Product.findById(productId).select({
+        reviews: 1,
+      });
+      return resenias;
+    } catch (error) {
+      console.error(
+        "error existente en getOneProductReviews- SERVICE",
+        error.message
+      );
+    }
+  }
 
   static async getAllProduct() {
     try {

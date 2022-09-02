@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { Typography, Box, Avatar } from "@mui/material";
@@ -7,25 +6,18 @@ import { signUp } from "../state/login";
 import { useNavigate } from "react-router";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "react-router-dom";
-
+import { useForm } from "react-hook-form";
 const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
 
-  const [register, setRegister] = useState({
-    username: "",
-    email: "",
-    password: "",
-    provincia: "",
-    direccion: "",
-    tel: "",
-  });
+    formState: { errors },
+  } = useForm();
 
-  const handlerInputs = (e) => {
-    setRegister({ ...register, [e.target.name]: e.target.value });
-    console.log(register);
-  };
-  const handleRegister = () => {
+  const handleRegister = (data) => {
     dispatch(signUp(register)).then(() => navigate("/"));
   };
 
@@ -66,19 +58,27 @@ const Signup = () => {
           variant="outlined"
           margin="normal"
           id="username"
-          label="ingresa un usuario"
+          label="Ingresa un usuario"
           name="username"
-          onChange={handlerInputs}
+          {...register("username", { required: true })}
         />
+        {errors.username?.type === "required" && "El usuario es requerido."}
         <TextField
           variant="outlined"
           margin="normal"
           id="email"
-          label="ingresa un email"
+          label="Ingresa un email"
           name="email"
           type="email"
-          onChange={handlerInputs}
+          {...register("email", {
+            required: true,
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            },
+          })}
         />
+        {errors.email?.type === "pattern" && "Ingresa un formato válido."}
+        {errors.email?.type === "required" && "El email es requerido."}
         <TextField
           variant="outlined"
           margin="normal"
@@ -86,24 +86,27 @@ const Signup = () => {
           label="ingresa un password"
           name="password"
           type="password"
-          onChange={handlerInputs}
+          {...register("password", { required: true, minLength: 10 })}
         />
+        {errors.password?.type === "required" && "La contraseña es requerida."}
         <TextField
           variant="outlined"
           margin="normal"
           id="direccion"
           label="ingresa una Provincia"
           name="provincia"
-          onChange={handlerInputs}
+          {...register("provincia", { required: true })}
         />
+        {errors.provincia?.type === "required" && "La provincia es requerida."}
         <TextField
           variant="outlined"
           margin="normal"
           id="direccion"
           label="ingresa una dirección"
           name="direccion"
-          onChange={handlerInputs}
+          {...register("direccion", { required: true })}
         />
+        {errors.direccion?.type === "required" && "La provincia es requerida."}
         <TextField
           variant="outlined"
           margin="normal"
@@ -111,8 +114,9 @@ const Signup = () => {
           label="ingresa un numero de telefono"
           name="tel"
           type="text"
-          onChange={handlerInputs}
+          {...register("tel", { required: true })}
         />
+        {errors.tel?.type === "required" && "El teléfono es requerido."}
         <Button
           variant="contained"
           sx={{
@@ -121,7 +125,7 @@ const Signup = () => {
               backgroundColor: "#633fa4",
             },
           }}
-          onClick={handleRegister}
+          onClick={handleSubmit(handleRegister)}
         >
           Ingresar
         </Button>

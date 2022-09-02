@@ -19,13 +19,14 @@ import {
   styled,
 } from "@mui/material";
 import { Stack } from "@mui/system";
-import React, { useState } from "react";
+import React from "react";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Collapse from "@mui/material/Collapse";
 import "animate.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 const StyledIcon = styled(ListItemIcon)(({ theme }) => ({
   position: "relative",
   top: "15px",
@@ -90,12 +91,14 @@ const Sidebar = () => {
           </Link>
         </ListItem>
         <ListItem>
-          <ListItemButton>
-            <ListItemIcon>
-              <FavoriteBorderOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Ordenes" />
-          </ListItemButton>
+          <Link to="/orders">
+            <ListItemButton>
+              <ListItemIcon>
+                <FavoriteBorderOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Ordenes" />
+            </ListItemButton>
+          </Link>
         </ListItem>
 
         <ListItemButton onClick={handleClick}>

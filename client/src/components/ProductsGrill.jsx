@@ -54,10 +54,7 @@ const ProductsGrill = () => {
                   component="img"
                   sx={{
                     maxHeight: "50%",
-                    // width: "320px",
-                    /* aspectRatio: "1/1", */
                     objectFit: "contain",
-                    /* pt: "25px" */
                   }}
                   image={card.image[0]}
                   alt="foto de producto"

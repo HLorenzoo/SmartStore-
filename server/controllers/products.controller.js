@@ -105,6 +105,27 @@ class ProductController {
       return res.status(500).json({ error });
     }
   }
+  static async addReview(req, res, next) {
+    try {
+      const { _id } = req.params; //Id del Usuario que realizó la compra
+      const productReview = await ProductService.addReview(_id, req.body);
+      console.log(productReview);
+      productReview && res.status(202).send(productReview);
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  static async getOneProductReviews(req, res, next) {
+    try {
+      const { _id } = req.params;
+
+      const reviews = await ProductService.getOneProductReviews(_id);
+      reviews && res.status(200).send(reviews);
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  }
 }
 
 module.exports = ProductController;

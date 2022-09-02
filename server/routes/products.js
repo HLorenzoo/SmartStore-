@@ -6,13 +6,13 @@ const { verifyTokenAdmin } = require("../middelware/auth.middelware");
 //POST
 router.post("/", ProductController.createProduct);
 router.post("/cat", ProductController.createCategory);
-
+router.post("/review/:_id", ProductController.addReview); //agregar RESEÑA
 //GET
 router.get("/", ProductController.getAllProduct);
 router.get("/:_id", ProductController.getProductById);
 router.get("/name/:name", ProductController.getProductByName);
 router.get("/cat/:category", ProductController.getProductByCategory);
-
+router.get("/showReviews/:_id", ProductController.getOneProductReviews);
 //PUT
 router.put("/edit/:_id", ProductController.editProduct);
 router.put("/cat/edit/:_id", ProductController.editCategory);

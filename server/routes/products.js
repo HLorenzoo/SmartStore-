@@ -5,7 +5,7 @@ const { verifyTokenAdmin } = require("../middelware/auth.middelware");
 
 //POST
 router.post("/", ProductController.createProduct);
-router.post("/cat", ProductController.createCategory);
+/* router.post("/cat", ProductController.createCategory); */
 
 //GET
 router.get("/", ProductController.getAllProduct);
@@ -14,10 +14,10 @@ router.get("/name/:name", ProductController.getProductByName);
 router.get("/cat/:category", ProductController.getProductByCategory);
 
 //PUT
-router.put("/edit/:_id", ProductController.editProduct);
-router.put("/cat/edit/:_id", ProductController.editCategory);
+/* router.put("/edit/:_id", ProductController.editProduct);
+router.put("/cat/edit/:_id", ProductController.editCategory); */
 router.put("/:_id", ProductController.deleteProduct);
-router.put("/cat/:_id", ProductController.deleteCategory);
+/* router.put("/cat/:_id", ProductController.deleteCategory); */
 
 //CON PERSISTENCIA -ADMIN
 //POST

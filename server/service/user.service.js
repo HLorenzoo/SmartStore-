@@ -32,10 +32,8 @@ class Userervice {
     }
   }
 
-
   static async addToCart(id, carrito) {
     try {
-
       const user = await User.find({
         _id: id,
         "carrito.name": carrito.name,
@@ -59,7 +57,6 @@ class Userervice {
         );
         return user;
       }
-
     } catch (error) {
       console.error("error existente en addToCart- SERVICE", error.message);
     }
@@ -97,14 +94,11 @@ class Userervice {
         _id,
         {
           $pull: {
-
             carrito: carrito,
-
           },
         },
         { new: true }
       );
-
     } catch (error) {
       console.error({ error });
     }

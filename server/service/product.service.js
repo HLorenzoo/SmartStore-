@@ -1,7 +1,7 @@
 const Products = require("../models/Products");
 
 const Product = require("../models/Products");
-const Category = require("../models/Categories");
+
 
 class ProductService {
   static async createProduct(reqbody) {
@@ -13,7 +13,7 @@ class ProductService {
     }
   }
 
-  static async createCategory(reqbody) {
+/*   static async createCategory(reqbody) {
     try {
       let category = new Category(reqbody);
       return await category.save({});
@@ -23,7 +23,7 @@ class ProductService {
         error.message
       );
     }
-  }
+  } */
 
   static async getAllProduct() {
     try {
@@ -69,7 +69,7 @@ class ProductService {
     }
   }
 
-  static async editProduct(id, reqbody) {
+/*   static async editProduct(id, reqbody) {
     try {
       return await Product.findByIdAndUpdate(
         id,
@@ -88,9 +88,9 @@ class ProductService {
     } catch (error) {
       console.error("error existente en editProduct- SERVICE", error.message);
     }
-  }
+  } */
 
-  static async editCategory(id, reqbody) {
+/*   static async editCategory(id, reqbody) {
     try {
       return await Category.findByIdAndUpdate(
         id,
@@ -105,7 +105,7 @@ class ProductService {
       console.error("error existente en editCategory- SERVICE", error.message);
     }
   }
-
+ */
   static async deleteProduct(id) {
     try {
       return await Product.findByIdAndDelete(id);
@@ -113,7 +113,7 @@ class ProductService {
       console.error("error existente en deleteProduct- SERVICE", error.message);
     }
   }
-
+/* 
   static async deleteCategory(id) {
     try {
       return await Category.findByIdAndDelete(id);
@@ -123,7 +123,7 @@ class ProductService {
         error.message
       );
     }
-  }
+  } */
 }
 
 module.exports = ProductService;

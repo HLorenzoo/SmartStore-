@@ -4,75 +4,76 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
-import { Button } from "@mui/material";
-
-const products = [
-  {
-    name: "Product 1",
-    desc: "A nice thing",
-    price: "$9.99",
-  },
-  {
-    name: "Product 2",
-    desc: "Another thing",
-    price: "$3.45",
-  },
-  {
-    name: "Product 3",
-    desc: "Something else",
-    price: "$6.51",
-  },
-  {
-    name: "Product 4",
-    desc: "Best thing of all",
-    price: "$14.11",
-  },
-  { name: "Shipping", desc: "", price: "Free" },
-];
-
-const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
-const payments = [
-  { name: "Card type", detail: "Visa" },
-  { name: "Card holder", detail: "Mr John Smith" },
-  { name: "Card number", detail: "xxxx-xxxx-xxxx-1234" },
-  { name: "Expiry date", detail: "04/2024" },
-];
-
+import { Box, Button, Divider } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import Sidebar from "./Sidebar";
+import { checkOut } from "../state/login";
+import { useNavigate } from "react-router";
 export default function Review() {
+  const { carrito, username, direccion, _id } = useSelector(
+    (state) => state.user
+  );
+  const subtotal = (car) => {
+    const total = car?.reduce((acc, producto) => {
+      return (acc += Math.ceil(producto.price) * Math.ceil(producto.amount));
+    }, 0);
+    return total;
+  };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleClick = () => {
+    dispatch(checkOut(_id)).then(() => navigate("/"));
+  };
   return (
-    <React.Fragment>
+    <Box>
       <Typography variant="h6" gutterBottom>
-        Order summary
+        Orden final
       </Typography>
+      <Divider sx={{ width: "26%" }} />
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+        {carrito?.map((product, i) => (
+          <ListItem key={i} sx={{ py: 1, px: 0 }}>
+            <ListItemText
+              primary={product.name}
+              secondary={product.description?.substring(0, 120) + "..."}
+              sx={{ borderRadius: 1, backgroundColor: "#bababa" }}
+            />
+            <Box display="flex" flexDirection="column" alignItems="center">
+              <Typography variant="body1">
+                $ {Math.ceil(product.price * product.amount)}
+              </Typography>
+              <Typography variant="body2">Cantidad:{product.amount}</Typography>
+            </Box>
           </ListItem>
         ))}
 
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            $ {subtotal(carrito)}
           </Typography>
         </ListItem>
       </List>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Shipping
+            Datos del envio
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(", ")}</Typography>
+          <Typography gutterBottom>Para :{username}</Typography>
+          <Typography gutterBottom>En la direccion :{direccion}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
-          <Button variant="contained" sx={{ mt: 3, ml: 1 }}>
+          <Button
+            onClick={handleClick}
+            variant="contained"
+            color="warning"
+            sx={{ mt: 3, ml: 1, "&:hover": { backgroundColor: "#B55200" } }}
+          >
             Pagar ahora
           </Button>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </Box>
   );
 }

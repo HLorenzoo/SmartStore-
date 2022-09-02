@@ -11,7 +11,7 @@ class ProductController {
       return res.status(500).json({ error });
     }
   }
-
+/* 
   static async createCategory(req, res, next) {
     try {
       const category = await ProductService.createCategory(req.body);
@@ -19,7 +19,7 @@ class ProductController {
     } catch (error) {
       return res.status(500).json({ error });
     }
-  }
+  } */
 
   static async getAllProduct(req, res, next) {
     try {
@@ -63,7 +63,7 @@ class ProductController {
     }
   }
 
-  static async editProduct(req, res, next) {
+/*   static async editProduct(req, res, next) {
     try {
       const { _id } = req.params;
       const productUpdated = await ProductService.editProduct(_id, req.body);
@@ -73,8 +73,8 @@ class ProductController {
       return res.status(500).json({ error });
     }
   }
-
-  static async editCategory(req, res, next) {
+ */
+/*   static async editCategory(req, res, next) {
     try {
       const { _id } = req.params;
       const categoryUpdated = await ProductService.editCategory(_id, req.body);
@@ -83,7 +83,7 @@ class ProductController {
     } catch (error) {
       return res.status(500).json({ error });
     }
-  }
+  } */
 
   static async deleteProduct(req, res, next) {
     try {
@@ -95,7 +95,7 @@ class ProductController {
     }
   }
 
-  static async deleteCategory(req, res, next) {
+/*   static async deleteCategory(req, res, next) {
     try {
       const { _id } = req.params;
       console.log(_id);
@@ -104,6 +104,7 @@ class ProductController {
     } catch (error) {
       return res.status(500).json({ error });
     }
+
   }
   static async addReview(req, res, next) {
     try {

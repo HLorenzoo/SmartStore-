@@ -37,10 +37,7 @@ Este proyecto pertenece al grupo 6 denominado SmartStore desarrollado con las si
 
 - Mongoose
 
-
 Tenemos hosteada la base de datos en la nube por lo tanto en caso de querer pasarlo a producción ya se puede consumir de la misma
-  
-
 Cambiamos los estados usando redux, lo que nos permite un sitio web escalable y versatil a la hora de crecer.
 
 

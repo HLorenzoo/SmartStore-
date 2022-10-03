@@ -77,6 +77,6 @@ Para iniciar el servidor del back y del front en cada una de las carpetas client
 
 Se debe crear un archivo .env en la raiz de la carpeta server con las siguientes lineas:
 
-    PORT=3001
-    MONGO_URL='"mongodb+srv://SMART:SMART@cluster0.lje0d28.mongodb.net/?retryWrites=true&w=majority"'
-    SECRET='Hernu' 
+    PORT=
+    MONGO_URL=''
+    SECRET='' 

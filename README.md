@@ -40,8 +40,8 @@ Cambiamos los estados usando redux, lo que nos permite un sitio web escalable y 
 
 ### Instructions:
 
-Install dependencies and inside the folders client and server run ´npm install´.
-And after that run in the same folders ´npm start´
+Install dependencies and inside the folders client and server run `npm install`.
+And after that run in the same folders `npm start`.
 
 You must create a file .env in the root of the server folder with the following lines:
 
